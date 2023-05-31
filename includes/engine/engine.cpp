@@ -4,7 +4,7 @@
 Engine::Engine(){
     //Change the name of the project here
     this->_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
-                         "Project Name");
+                         "Chinese Chess");
     this->_window.setKeyRepeatEnabled(true);
     // ADD MORE IN CTOR
     this->_init();
@@ -44,6 +44,7 @@ void Engine::input(){
 void Engine::display(){
     // ADD MORE THINGS TO DRAW
     // display the input box for user to enter bet
+
     this->_input_box.drawTo(this->_window);
     this->_header.drawTo(this->_window);
     // display buttons
@@ -56,6 +57,11 @@ void Engine::display(){
 void Engine::run(){
     // set the position and font before running
     sf::Font arial = config.get_font(ARIAL);
+
+    sf::Texture back = config.get_texture("0");
+    sf::Sprite sprite(back);
+
+
     this->_input_box.setFont(arial);
     this->_header.setFont(arial);
 
@@ -64,9 +70,13 @@ void Engine::run(){
         // taking input
         this->input();
         // clear the screen
+
         this->_window.clear(sf::Color(145, 186, 214));
+
         // draw the updated events
         this->display();
+        this->_window.draw(sprite);
+
         // sfml method to display to the screen
         this->_window.display();
     }

@@ -18,8 +18,8 @@ enum ACTION_CODE{
 // add more enum here
 // windows
 // ADD WINDOWS CONFIG VARIABLE HERE
-const int WINDOW_HEIGHT = 650;
-const int WINDOW_WIDTH = 1200;
+const float WINDOW_HEIGHT = 1446;
+const float WINDOW_WIDTH = 1333.5;
 const int INPUT_BOX_FONT_SIZE = 24;
 const int HEADER_FONT_SIZE = 35;
 

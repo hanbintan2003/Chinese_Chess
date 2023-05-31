@@ -6,7 +6,7 @@ Config config = Config();
 void Config::_set_texture(){
     // set texture example
     auto t1 = make_shared<sf::Texture>();
-    t1->loadFromFile("../assets/error.png");
+    t1->loadFromFile("../assets/back.jpeg");
     this->_texture_map.insert({"0",t1});
 }
 
