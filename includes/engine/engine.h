@@ -24,9 +24,9 @@ private:
     void _init();
     // update
     void _update_buttons_event(sf::Event& event);
-    void _update_input_box_event(){
-        cout << "Input box event triggered" << endl;
-    }
+//    void _update_input_box_event(){
+//        cout << "Input box event triggered" << endl;
+//    }
 
 public:
     // constructors and destructors

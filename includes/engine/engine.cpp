@@ -26,30 +26,16 @@ void Engine::input(){
             this->_window.close();
             break;
         }
-        // User input text
-        if(event.type == sf::Event::TextEntered){
-            this->_input_box.typedOn(event);
-            break;
-        }
-        // User press up and already entered bet
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-            this->_update_input_box_event();
-            break;
-        }
-        this->_input_box.update_input_box(this->_window, event);
+
     }
 }
 
 // main draw method, update screen
 void Engine::display(){
     // ADD MORE THINGS TO DRAW
-    // display the input box for user to enter bet
-
-    this->_input_box.drawTo(this->_window);
     this->_header.drawTo(this->_window);
     // display buttons
     this->_buttons.draw_buttons(this->_window);
-
 }
 
 
@@ -88,12 +74,7 @@ void Engine::run(){
 void Engine::_init(){
 
     this->_buttons = Buttons();
-    this->_header = Header("TEST HEADER", HEADER_SIZE,
-                           HEADER_POS, HEADER_FONT_SIZE,
-                           sf::Color(115, 165, 198), sf::Color::Black);
-    this->_input_box = InputBox(INPUT_BOX_FONT_SIZE, INPUT_BOX_SIZE,
-                                INPUT_BOX_POS, sf::Color::Black,
-                                sf::Color::White, false);
+
 }
 // *****************************************************************************************************************
 
