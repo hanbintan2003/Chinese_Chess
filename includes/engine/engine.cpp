@@ -57,11 +57,13 @@ void Engine::run(){
         this->input();
         // clear the screen
 
-        this->_window.clear(sf::Color(145, 186, 214));
+        //this->_window.clear(sf::Color(145, 186, 214));
+
 
         // draw the updated events
-        this->display();
         this->_window.draw(sprite);
+        //this->display();
+
 
         // sfml method to display to the screen
         this->_window.display();

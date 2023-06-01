@@ -30,4 +30,5 @@ const sf::Vector2f INPUT_BOX_POS = sf::Vector2f(430, 500);
 const sf::Vector2f HEADER_SIZE = sf::Vector2f(300, 50);
 const sf::Vector2f HEADER_POS = sf::Vector2f(430, 200);
 
+
 #endif
