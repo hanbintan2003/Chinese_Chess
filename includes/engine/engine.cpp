@@ -31,9 +31,10 @@ void Engine::input(){
 // main draw method, update screen
 void Engine::display(){
     // ADD MORE THINGS TO DRAW
-    this->_header.drawTo(this->_window);
+
     // display buttons
-    this->_buttons.draw_buttons(this->_window);
+    //this->_buttons.draw_buttons(this->_window);
+    this->_chesses.draw_chesses(this->_window);
 }
 
 
@@ -45,28 +46,6 @@ void Engine::run(){
     sf::Texture back = config.get_texture("0");
     sf::Sprite sprite(back);
 
-    const sf::Texture *bcc = &config.get_texture("bc");
-    const sf::Texture *bmm = &config.get_texture("bm");
-
-    sf::CircleShape bc,bbc;
-    bc.setRadius(63);
-    bbc.setRadius(63);
-    //bc.setFillColor(sf::Color(215, 186, 140));
-    bc.setTexture(bcc);
-    bbc.setFillColor(sf::Color(215, 186, 140));
-    bc.setPosition({0, 0});
-    bbc.setPosition({0, 0});
-
-    sf::CircleShape bm,bbm;
-    bm.setRadius(63);
-    bbm.setRadius(63);
-    //bc.setFillColor(sf::Color(215, 186, 140));
-    bm.setTexture(bmm);
-    bbm.setFillColor(sf::Color(215, 186, 140));
-    bm.setPosition({150, 0});
-    bbm.setPosition({150, 0});
-
-
 
     // main loop
     while (this->_window.isOpen()){
@@ -76,16 +55,9 @@ void Engine::run(){
         // clear the screen
         //this->_window.clear(sf::Color(145, 186, 214));
 
-
-
         // draw the updated events
         this->_window.draw(sprite);
-        this->_window.draw(bbc);
-        this->_window.draw(bc);
-
-        this->_window.draw(bbm);
-        this->_window.draw(bm);
-        //this->display();
+        this->display();
 
 
         // sfml method to display to the screen

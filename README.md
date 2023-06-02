@@ -19,5 +19,5 @@ Can be found in [https://github.com/hanbintan2003/SFML_Template/blob/main/design
 
 ## Features
 
-- feature 1
+- Using Fetch API no need to download Environment
 - feature 2

@@ -4,6 +4,7 @@
 #include "../config/config.h"
 #include "../input_box/input_box.h"
 #include "../button/buttons.h"
+#include "../button/chesses.h"
 #include "../header/header.h"
 
 
@@ -17,6 +18,7 @@ private:
     InputBox _input_box;
     Buttons _buttons;
     Header _header;
+    Chesses _chesses;
     // private member variables here
 
     // private helper functions here

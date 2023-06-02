@@ -6,33 +6,23 @@
 class Chess {
 public:
     Chess()= default;
-    Chess(float radius, sf::Vector2f position){
+    Chess(float radius, sf::Vector2f position, sf::Texture &texture){
         circle.setRadius(radius);
         circle.setPosition(position);
+        circle.setTexture(&texture);
+
+        circleColor.setRadius(radius);
+        circleColor.setPosition(position);
+        circleColor.setFillColor(sf::Color(215, 186, 140));
     }
 
     void setBackColor(sf::Color color){
-        circle.setFillColor(color);
+        circleColor.setFillColor(color);
     }
-
-    void setTexture(sf::Texture &texture){
-        circle.setTexture(&texture);
-    }
-
-//    void setPosition(sf::Vector2f point){
-//        circle.setPosition(point);
-//
-//        // Center text on button:
-//        float div = 2.0 + btnHeight / btnWidth;
-//
-//        float xPos = (point.x + btnWidth / div) - (text.getLocalBounds().width / 2);
-//        float yPos = (point.y + btnHeight / div) - (text.getLocalBounds().height / 2);
-//        text.setPosition(xPos, yPos);
-//    }
 
     void drawTo(sf::RenderWindow &window){
+        window.draw(circleColor);
         window.draw(circle);
-        //window.draw(texture);
     }
 
     // Check if the mouse is within the bounds of the button:
@@ -59,7 +49,7 @@ public:
 
 private:
     sf::CircleShape circle;
-    sf::Texture texture;
+    sf::CircleShape circleColor;
 };
 
 #endif //CHINESE_CHESS_CHESS_H
