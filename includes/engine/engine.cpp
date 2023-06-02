@@ -3,8 +3,7 @@
 // Engine main
 Engine::Engine(){
     //Change the name of the project here
-    this->_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
-                         "Chinese Chess");
+    this->_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Chinese Chess");
     this->_window.setKeyRepeatEnabled(true);
     // ADD MORE IN CTOR
     this->_init();
@@ -26,7 +25,6 @@ void Engine::input(){
             this->_window.close();
             break;
         }
-
     }
 }
 
@@ -47,6 +45,12 @@ void Engine::run(){
     sf::Texture back = config.get_texture("0");
     sf::Sprite sprite(back);
 
+    const sf::Texture *bcc = &config.get_texture("bc");
+    sf::CircleShape bc;
+    bc.setRadius(66);
+    //bc.setFillColor(sf::Color(215, 186, 140));
+    bc.setTexture(bcc);
+    bc.setPosition({-10, -10});
 
     this->_input_box.setFont(arial);
     this->_header.setFont(arial);
@@ -55,13 +59,15 @@ void Engine::run(){
     while (this->_window.isOpen()){
         // taking input
         this->input();
-        // clear the screen
 
+        // clear the screen
         //this->_window.clear(sf::Color(145, 186, 214));
+
 
 
         // draw the updated events
         this->_window.draw(sprite);
+        this->_window.draw(bc);
         //this->display();
 
 

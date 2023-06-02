@@ -10,12 +10,12 @@ private:
     vector<Button> _buttons;
     void _init_buttons(){
         // example
-
-        Button hit_btn("TEST", {130, 50}, 30,
+        Button hit_btn("", {130, 50}, 30,
                        sf::Color::White, sf::Color::Red);
         hit_btn.setFont(config.get_font(ARIAL));
         hit_btn.setPosition({500, 300});
         this->_buttons.push_back(hit_btn);
+
     }
 public:
     Buttons(){
@@ -42,9 +42,9 @@ public:
         return INVALID;
     }
     void draw_buttons(sf::RenderWindow &window){
-        for(int i = 0; i < this->_buttons.size(); ++i){
-            this->_buttons[i].setFont(config.get_font(ARIAL));
-            this->_buttons[i].drawTo(window);
+        for(auto & _button : this->_buttons){
+            _button.setFont(config.get_font(ARIAL));
+            _button.drawTo(window);
         }
     }
 };

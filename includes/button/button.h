@@ -18,6 +18,7 @@ public:
         text.setCharacterSize(charSize);
         text.setFillColor(textColor);
     }
+
     void setFont(sf::Font &fonts){
         text.setFont(fonts);
     }

@@ -15,13 +15,19 @@ enum ACTION_CODE{
     TEST = 0,
 };
 
+enum PLAY{
+    Red = 0,
+    Black = 1,
+};
+
+
+
 // add more enum here
 // windows
 // ADD WINDOWS CONFIG VARIABLE HERE
 const float WINDOW_HEIGHT = 1446;
 const float WINDOW_WIDTH = 1333.5;
-const int INPUT_BOX_FONT_SIZE = 24;
-const int HEADER_FONT_SIZE = 35;
+
 
 // system variable config
 // ADD SYSTEM  VARIABLE HERE
@@ -30,5 +36,6 @@ const sf::Vector2f INPUT_BOX_POS = sf::Vector2f(430, 500);
 const sf::Vector2f HEADER_SIZE = sf::Vector2f(300, 50);
 const sf::Vector2f HEADER_POS = sf::Vector2f(430, 200);
 
+const sf::Vector2f oneone = sf::Vector2f(430, 200);
 
 #endif
