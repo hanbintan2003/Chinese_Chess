@@ -6,7 +6,7 @@ Config config = Config();
 void Config::_set_texture(){
     // back ground
     auto back = make_shared<sf::Texture>();
-    back->loadFromFile("../assets/back.jpeg");
+    back->loadFromFile("../assets/chess/back.jpeg");
     this->_texture_map.insert({"0",back});
 
     //chess

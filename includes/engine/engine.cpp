@@ -46,14 +46,27 @@ void Engine::run(){
     sf::Sprite sprite(back);
 
     const sf::Texture *bcc = &config.get_texture("bc");
-    sf::CircleShape bc;
-    bc.setRadius(66);
+    const sf::Texture *bmm = &config.get_texture("bm");
+
+    sf::CircleShape bc,bbc;
+    bc.setRadius(63);
+    bbc.setRadius(63);
     //bc.setFillColor(sf::Color(215, 186, 140));
     bc.setTexture(bcc);
-    bc.setPosition({-10, -10});
+    bbc.setFillColor(sf::Color(215, 186, 140));
+    bc.setPosition({0, 0});
+    bbc.setPosition({0, 0});
 
-    this->_input_box.setFont(arial);
-    this->_header.setFont(arial);
+    sf::CircleShape bm,bbm;
+    bm.setRadius(63);
+    bbm.setRadius(63);
+    //bc.setFillColor(sf::Color(215, 186, 140));
+    bm.setTexture(bmm);
+    bbm.setFillColor(sf::Color(215, 186, 140));
+    bm.setPosition({150, 0});
+    bbm.setPosition({150, 0});
+
+
 
     // main loop
     while (this->_window.isOpen()){
@@ -67,7 +80,11 @@ void Engine::run(){
 
         // draw the updated events
         this->_window.draw(sprite);
+        this->_window.draw(bbc);
         this->_window.draw(bc);
+
+        this->_window.draw(bbm);
+        this->_window.draw(bm);
         //this->display();
 
 

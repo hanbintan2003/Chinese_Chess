@@ -1,6 +1,6 @@
 
-# Project Name
-Project Description goes here
+# Chinese Chess
+A Chinese Chess game written in C++ with SFML
 
 * operation 1
 * operation 2
@@ -9,11 +9,7 @@ Project Description goes here
 ## Demo
 * Demo 1
 <br>
-<img src="assets/home.png"/>
-
-* Demo 2
-  <br>
-  <img src="assets/home2.png"/>
+<img src="assets/back.png"/>
 
 
 ## Design
