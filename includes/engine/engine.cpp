@@ -18,6 +18,7 @@ void Engine::input(){
     while (this->_window.pollEvent(event)){
         // calling update event helper functions
         this->_update_buttons_event(event);
+        this->_update_chesses_event(event);
 
         // User quit
         if(event.type == sf::Event::Closed){
@@ -88,6 +89,15 @@ void Engine::_update_buttons_event(sf::Event& event)
     // }
 
     // ex:
+    if(action == TEST)
+    {
+        cout << "TEST" << endl;
+        return;
+    }
+}
+
+void Engine::_update_chesses_event(sf::Event &event) {
+    int action = this->_chesses.update_chesses(this->_window, event);
     if(action == TEST)
     {
         cout << "TEST" << endl;
