@@ -89,18 +89,18 @@ void Engine::_update_buttons_event(sf::Event& event)
     // }
 
     // ex:
-    if(action == TEST)
+    if(action == Work)
     {
-        cout << "TEST" << endl;
+        cout << "Work" << endl;
         return;
     }
 }
 
 void Engine::_update_chesses_event(sf::Event &event) {
     int action = this->_chesses.update_chesses(this->_window, event);
-    if(action == TEST)
+    if(action == Work)
     {
-        cout << "TEST" << endl;
+        //cout << "work" << endl;
         return;
     }
 }

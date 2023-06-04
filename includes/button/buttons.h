@@ -23,6 +23,7 @@ public:
         this->_init_buttons();
     }
     ~Buttons(){}
+
     int update_buttons(sf::RenderWindow &window, sf::Event& event){
         for(int i = 0; i < this->_buttons.size(); ++i){
             if(this->_buttons[i].isMouseOver(window))
@@ -37,7 +38,7 @@ public:
             bool clicked = this->_buttons[i].isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
             // if(clicked && i == ACTION CODE DEFINED IN SYSTEM) return ACTION CODE DEFINED IN SYSTEM;
             // ex:
-            if(clicked && i == TEST) return TEST;
+            if(clicked && i == Work) return Work;
         }
         return INVALID;
     }

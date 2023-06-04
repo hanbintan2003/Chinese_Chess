@@ -4,7 +4,7 @@
 #include "../config/config.h"
 #include "../input_box/input_box.h"
 #include "../button/buttons.h"
-#include "../button/chesses.h"
+#include "../chess/chesses.h"
 #include "../header/header.h"
 
 

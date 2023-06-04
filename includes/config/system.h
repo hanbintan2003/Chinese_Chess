@@ -12,7 +12,7 @@ enum FONTS{
 enum ACTION_CODE{
     INVALID = -1,
     // add more action code for button here
-    TEST = 0,
+    Work = 0,
 };
 
 enum PLAY{

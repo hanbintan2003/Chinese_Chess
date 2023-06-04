@@ -1,7 +1,7 @@
 #ifndef CHINESE_CHESS_CHESS_H
 #define CHINESE_CHESS_CHESS_H
 
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 
 class Chess {
 public:
@@ -15,6 +15,18 @@ public:
         circleColor.setRadius(radius);
         circleColor.setPosition(position);
         //circleColor.setFillColor(sf::Color(215, 186, 140));
+    }
+    string getName(){
+        return name;
+    }
+
+    sf::Vector2f getPosition() {
+        return circle.getPosition();
+    }
+
+    void setPosition(sf::Vector2f newPos) {
+        circle.setPosition(newPos);
+        circleColor.setPosition(newPos);
     }
 
     void setBackColor(sf::Color color){
@@ -47,6 +59,29 @@ public:
         }
         return false;
     }
+
+    bool isMouseOverGrid(sf::RenderWindow& window) {
+        sf::Vector2i mouseCoords({ sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y });
+        sf::Vector2f realCoords = window.mapPixelToCoords(mouseCoords);
+
+        float mouseX = realCoords.x;
+        float mouseY = realCoords.y;
+
+        const float radius = 60.0f;
+
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 9; j++) {
+                float dx = grid[i][j].x - mouseX;
+                float dy = grid[i][j].y - mouseY;
+                if (dx * dx + dy * dy <= radius * radius) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
 private:
     sf::CircleShape circle;
