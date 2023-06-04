@@ -1,6 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 #include <SFML/Graphics.hpp>
+#include <iostream>
 using namespace std;
 
 enum FONTS{
@@ -19,6 +20,26 @@ enum PLAY{
     Red = 0,
     Black = 1,
 };
+
+enum ccc{
+    bc = 0,
+    bj = 1,
+    bm = 2,
+    bp = 3,
+    bs = 4,
+    bx = 5,
+    bz = 6,
+
+    rb=7,
+    rc = 8,
+    rj = 9,
+    rm = 10,
+    rp = 11,
+    rs = 12,
+    rx = 13,
+};
+
+string callName(int name);
 
 
 // add more enum here

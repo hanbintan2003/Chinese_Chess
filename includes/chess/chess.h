@@ -6,7 +6,13 @@
 class Chess {
 public:
     Chess()= default;
-    Chess(string name, float radius, sf::Vector2f position, sf::Texture &texture){
+    Chess(float radius, sf::Vector2f position){
+        this->name=-1;
+        circle.setRadius(radius);
+        circle.setPosition(position);
+    }
+
+    Chess(int name, float radius, sf::Vector2f position, sf::Texture &texture){
         this->name=name;
         circle.setRadius(radius);
         circle.setPosition(position);
@@ -16,8 +22,10 @@ public:
         circleColor.setPosition(position);
         //circleColor.setFillColor(sf::Color(215, 186, 140));
     }
-    string getName(){
-        return name;
+
+
+    int getName(){
+        return this->name;
     }
 
     sf::Vector2f getPosition() {
@@ -86,7 +94,7 @@ public:
 private:
     sf::CircleShape circle;
     sf::CircleShape circleColor;
-    string name;
+    int name;
 };
 
 #endif //CHINESE_CHESS_CHESS_H
