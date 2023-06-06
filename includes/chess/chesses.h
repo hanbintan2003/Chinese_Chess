@@ -129,7 +129,7 @@ public:
             if(clicked) {
 
                 cout<<"Select "<<callName(_chesse.getName())<<endl;
-                return Work;
+                return _chesse.getName();
 
             }
         }

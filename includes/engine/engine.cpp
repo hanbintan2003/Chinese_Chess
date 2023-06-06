@@ -82,13 +82,6 @@ void Engine::_update_buttons_event(sf::Event& event)
     // to get which button the player clicks
     int action = this->_buttons.update_buttons(this->_window, event);
 
-    // template for action code
-    // if(action == ACTION CODE DEFINED IN SYSTEM)
-    // {
-
-    // }
-
-    // ex:
     if(action == Work)
     {
         cout << "Work" << endl;
@@ -97,10 +90,21 @@ void Engine::_update_buttons_event(sf::Event& event)
 }
 
 void Engine::_update_chesses_event(sf::Event &event) {
-    int action = this->_chesses.update_chesses(this->_window, event);
-    if(action == Work)
-    {
-        //cout << "work" << endl;
-        return;
-    }
+    int name = this->_chesses.update_chesses(this->_window, event);
+    if(name == -1)cout<< "Empty";
+    if (name == 0) cout<< "Black Car";
+    if (name == 1) cout<< "Black King";
+    if (name == 2) cout<< "Black Horse";
+    if (name == 3) cout<< "Black Boom";
+    if (name == 4) cout<< "Black Scholar";
+    if (name == 5) cout<< "Black Minister";
+    if (name == 6) cout<< "Black Solider";
+
+    if (name == 7) cout<< "Red Solider";
+    if (name == 8) cout<< "Red Car";
+    if (name == 9) cout<< "Red King";
+    if (name == 10) cout<< "Red Horse";
+    if (name == 11) cout<< "Red Boom";
+    if (name == 12) cout<< "Red Scholar";
+    if (name == 13) cout<< "Red Minister";
 }
