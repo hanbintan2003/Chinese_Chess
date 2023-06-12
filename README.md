@@ -7,7 +7,6 @@ A Chinese Chess game written in C++ with SFML
 
 
 ## Demo
-* Demo 1
 <br>
 <img src="assets/back.png"/>
 
