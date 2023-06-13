@@ -91,20 +91,30 @@ void Engine::_update_buttons_event(sf::Event& event)
 
 void Engine::_update_chesses_event(sf::Event &event) {
     int name = this->_chesses.update_chesses(this->_window, event);
-    if(name == -1)cout<< "Empty";
-    if (name == 0) cout<< "Black Car";
-    if (name == 1) cout<< "Black King";
-    if (name == 2) cout<< "Black Horse";
-    if (name == 3) cout<< "Black Boom";
-    if (name == 4) cout<< "Black Scholar";
-    if (name == 5) cout<< "Black Minister";
-    if (name == 6) cout<< "Black Solider";
 
-    if (name == 7) cout<< "Red Solider";
-    if (name == 8) cout<< "Red Car";
-    if (name == 9) cout<< "Red King";
-    if (name == 10) cout<< "Red Horse";
-    if (name == 11) cout<< "Red Boom";
-    if (name == 12) cout<< "Red Scholar";
-    if (name == 13) cout<< "Red Minister";
+    if (name >-2 && name < 14) cout<< "Selected ";
+    if (name == -1) {
+        cout<< "Empty"<<endl;
+    }
+    if (name == 0) {
+        cout<< "Black Car"<<endl;
+        while(true){
+            int name = this->_chesses.update_chesses(this->_window, event);
+            if (name ==0) break;
+        }
+    }
+    if (name == 1) cout<< "Black King"<<endl;
+    if (name == 2) cout<< "Black Horse"<<endl;
+    if (name == 3) cout<< "Black Boom"<<endl;
+    if (name == 4) cout<< "Black Scholar"<<endl;
+    if (name == 5) cout<< "Black Minister"<<endl;
+    if (name == 6) cout<< "Black Solider"<<endl;
+
+    if (name == 7) cout<< "Red Solider"<<endl;
+    if (name == 8) cout<< "Red Car"<<endl;
+    if (name == 9) cout<< "Red King"<<endl;
+    if (name == 10) cout<< "Red Horse"<<endl;
+    if (name == 11) cout<< "Red Boom"<<endl;
+    if (name == 12) cout<< "Red Scholar"<<endl;
+    if (name == 13) cout<< "Red Minister"<<endl;
 }

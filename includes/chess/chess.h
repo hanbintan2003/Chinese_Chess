@@ -10,6 +10,7 @@ public:
         this->name=-1;
         circle.setRadius(radius);
         circle.setPosition(position);
+        circle.setFillColor(sf::Color::Transparent);
     }
 
     Chess(int name, float radius, sf::Vector2f position, sf::Texture &texture){

@@ -105,6 +105,23 @@ private:
 
         Chess rb5( 7,60,grid[6][8],config.get_texture("rb"));
         this->_chesses.push_back(rb5);//31
+
+        //forloop for grid
+        for(int i=0;i<10;i++){
+            for(int j=0;j<9;j++){
+                bool flag = false;
+                for (int k = 0; k < this->_chesses.size(); ++k) {
+                    if(this->_chesses[k].getPosition() == grid[i][j]){
+                        flag = true;
+                        break;
+                    }
+                }
+                if(!flag){
+                    Chess empty(60,grid[i][j]);
+                    this->_chesses.push_back(empty);
+                }
+            }
+        }
     }
 public:
     Chesses(){
@@ -128,7 +145,7 @@ public:
 
             if(clicked) {
 
-                cout<<"Select "<<callName(_chesse.getName())<<endl;
+                //cout<<"Select "<<callName(_chesse.getName())<<endl;
                 return _chesse.getName();
 
             }
