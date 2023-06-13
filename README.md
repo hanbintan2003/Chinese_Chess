@@ -8,7 +8,7 @@ A Chinese Chess game written in C++ with SFML
 
 ## Demo
 <br>
-<img src="assets/demo.png"  alt="Demo"/>
+<img src="assets/demo.png" width="443.666" height="498.333"  alt="Demo"/>
 
 ## Design
 change the repo name:
