@@ -11,5 +11,29 @@ project structure:
     --design.txt // project introduction
     --CMakeLists.txt // cmake for this project
 
+
+game stage as 0/1
+0 red first 1 black second
+
+0 - empty
+1-5 red soldier
+6,7 red cannon
+8,9 red chariot
+10,11 red horse
+12,13 red elephant
+14,15 red advisor
+16 red general
+
+21-25 black soldier
+26,27 black cannon
+28,29 black chariot
+30,31 black horse
+32,33 black elephant
+34,35 black advisor
+36 black general
+
+
+
+
 // TODO
 

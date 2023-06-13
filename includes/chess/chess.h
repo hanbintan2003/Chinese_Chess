@@ -7,7 +7,7 @@ class Chess {
 public:
     Chess()= default;
     Chess(float radius, sf::Vector2f position){
-        this->name=-1;
+        this->name=0;
         circle.setRadius(radius);
         circle.setPosition(position);
         circle.setFillColor(sf::Color::Transparent);
