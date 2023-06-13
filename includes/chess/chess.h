@@ -6,37 +6,54 @@
 class Chess {
 public:
     Chess()= default;
-    Chess(float radius, sf::Vector2f position){
+    Chess(float radius, int i, int j){
+        this->x=i;
+        this->y=j;
         this->name=0;
         circle.setRadius(radius);
-        circle.setPosition(position);
+        circle.setPosition(grid[i][j]);
         circle.setFillColor(sf::Color::Transparent);
     }
 
-    Chess(int name, float radius, sf::Vector2f position, sf::Texture &texture){
+    Chess(int name, float radius, int i, int j, sf::Texture &texture){
+        this->x=i;
+        this->y=j;
         this->name=name;
         circle.setRadius(radius);
-        circle.setPosition(position);
+        circle.setPosition(grid[i][j]);
         circle.setTexture(&texture);
 
         circleColor.setRadius(radius);
-        circleColor.setPosition(position);
-        //circleColor.setFillColor(sf::Color(215, 186, 140));
+        circleColor.setPosition(grid[i][j]);
     }
 
 
     int getName(){
         return this->name;
     }
+    int getX(){
+        return this->x;
+    }
+    int getY(){
+        return this->y;
+    }
 
     sf::Vector2f getPosition() {
         return circle.getPosition();
+    }
+
+    void move(int i, int j){
+        this->x=i;
+        this->y=j;
+        circle.setPosition(grid[i][j]);
+        circleColor.setPosition(grid[i][j]);
     }
 
     void setPosition(sf::Vector2f newPos) {
         circle.setPosition(newPos);
         circleColor.setPosition(newPos);
     }
+
 
     void setBackColor(sf::Color color){
         circleColor.setFillColor(color);
@@ -95,6 +112,8 @@ public:
 private:
     sf::CircleShape circle;
     sf::CircleShape circleColor;
+    int x;
+    int y;
     int name;
 };
 
