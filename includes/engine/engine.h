@@ -11,6 +11,12 @@
 using namespace std;
 class Engine{
 private:
+    int play;
+//start with red
+
+    int name;
+//default no chess is selected
+
     // sfml private members here
     sf::RenderWindow _window;
 

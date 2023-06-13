@@ -130,12 +130,21 @@ public:
     }
     ~Chesses()= default;
 
-    int update_chesses(sf::RenderWindow &window, sf::Event& event, int play){
+    int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
         for(auto & _chesse : this->_chesses){
-            if(_chesse.isMouseOver(window)){
+            if((_chesse.isMouseOver(window) && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
+            ||(_chesse.isMouseOver(window) && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1))
+            {
                 _chesse.setBackColor(sf::Color(225, 196, 150));
                 continue;
             }
+
+            if (_chesse.isMouseOver(window) && name != -1 && _chesse.getName() == name)
+            {
+                _chesse.setBackColor(sf::Color(225, 196, 150));
+                continue;
+            }
+
             _chesse.setBackColor(sf::Color(215, 186, 140));
         }
 
@@ -143,13 +152,22 @@ public:
         {
             bool clicked = _chesse.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
 
-            if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0)
-            || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1)){
+            if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
+            || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1)){
 
-                //cout<<"Select "<<callName(_chesse.getName())<<endl;
                 return _chesse.getName();
-
             }
+
+            if(clicked && name != -1 && _chesse.getName() == name){
+                name = -1;
+                if (play == 1)play = 0;
+                else play = 1;
+
+                //unSelect
+                return -1;
+            }
+
+
         }
         return INVALID;
     }

@@ -70,7 +70,8 @@ void Engine::run(){
 
 // *****************************************************************************************************************
 void Engine::_init(){
-
+    this->play = 0;
+    this->name = -1;
     this->_buttons = Buttons();
 
 }
@@ -89,10 +90,22 @@ void Engine::_update_buttons_event(sf::Event& event)
     }
 }
 
-void Engine::_update_chesses_event(sf::Event &event) {
+void call(int temp){
+    if (temp >0 && temp < 37) cout<< "Selected ";
+    callName(temp);
+}
 
-    int name = this->_chesses.update_chesses(this->_window, event,play);
-    if (name >0 && name < 37) cout<< "Selected ";
-    callName(name);
+
+
+void Engine::_update_chesses_event(sf::Event &event) {
+    int temp = this->_chesses.update_chesses(this->_window, event,play,name);
+    if (temp>-1 && temp <37) {
+        name = temp;
+        temp = -1;
+        call(name);
+    }
+
 
 }
+
+
