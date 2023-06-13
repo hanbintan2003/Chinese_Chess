@@ -130,7 +130,7 @@ public:
     }
     ~Chesses()= default;
 
-    int update_chesses(sf::RenderWindow &window, sf::Event& event){
+    int update_chesses(sf::RenderWindow &window, sf::Event& event, int play){
         for(auto & _chesse : this->_chesses){
             if(_chesse.isMouseOver(window)){
                 _chesse.setBackColor(sf::Color(225, 196, 150));
@@ -143,7 +143,8 @@ public:
         {
             bool clicked = _chesse.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
 
-            if(clicked) {
+            if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0)
+            || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1)){
 
                 //cout<<"Select "<<callName(_chesse.getName())<<endl;
                 return _chesse.getName();

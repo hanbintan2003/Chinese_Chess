@@ -21,6 +21,8 @@ enum PLAY{
     Black = 1,
 };
 
+int play = 0;
+
 //enum ccc{
 //    bc = 0,
 //    bj = 1,

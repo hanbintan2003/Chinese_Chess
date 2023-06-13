@@ -90,7 +90,8 @@ void Engine::_update_buttons_event(sf::Event& event)
 }
 
 void Engine::_update_chesses_event(sf::Event &event) {
-    int name = this->_chesses.update_chesses(this->_window, event);
+
+    int name = this->_chesses.update_chesses(this->_window, event,play);
     if (name >0 && name < 37) cout<< "Selected ";
     callName(name);
 
