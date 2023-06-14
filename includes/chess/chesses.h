@@ -167,20 +167,35 @@ public:
             }
 
             //for soldier move
-            if((clicked && (_chesse.getName()<1 && _chesse.getName()>16) && _chesse.getName()!=name && play == 0 )||
-            (clicked && (_chesse.getName()<21) && _chesse.getName()!=name && play == 1))
+            if((clicked && (_chesse.getName()<1 || _chesse.getName()>16) && _chesse.getName()!=name && play == 0 && name >=1 &&name <6)||
+            (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=11 &&name <16)
             {
+                cout<<"stopby";
                 int x = _chesse.getX();
                 int y = _chesse.getY();
 
 
-
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getName() == name){
-                        _chesse.move(_chesse.getX()+1,_chesse.getY()+1);
+                        cout<<"work";
+                        if (play == 0){
+                            cout<<_chesse.getY();
+
+                            if (_chesse.getY() > 4){
+                                cout<<"work";
+                                if (x==_chesse.getX() && y==_chesse.getY()+1){
+                                    _chesse.move(_chesse.getX(),_chesse.getY()+1);
+                                }
+                            }
+                        }
                     }
                 }
+                _chesse.move(_chesse.getX(),_chesse.getY()-1);
+
+
                 name = -1;
+                if (play == 1)play = 0;
+                else play = 1;
                 return -1;
             }
 
