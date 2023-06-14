@@ -47,7 +47,6 @@ void Engine::run(){
     sf::Texture back = config.get_texture("0");
     sf::Sprite sprite(back);
 
-
     // main loop
     while (this->_window.isOpen()){
         // taking input
