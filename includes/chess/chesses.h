@@ -148,27 +148,33 @@ public:
             _chesse.setBackColor(sf::Color(215, 186, 140));
         }
 
-        for(auto & _chesse : this->_chesses)
-        {
+        for(auto & _chesse : this->_chesses){
             bool clicked = _chesse.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
 
+            //select
             if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
             || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1)){
 
                 return _chesse.getName();
             }
 
+            //unSelect
             if(clicked && name != -1 && _chesse.getName() == name){
                 name = -1;
                 if (play == 1)play = 0;
                 else play = 1;
-
-                //unSelect
                 return -1;
             }
 
-            if(clicked && _chesse.getName()==0 && _chesse.getName() != name && name >0 && name <6
-            && play == 0 ){
+            //for soldier move
+            if((clicked && (_chesse.getName()<1 && _chesse.getName()>16) && _chesse.getName()!=name && play == 0 )||
+            (clicked && (_chesse.getName()<21) && _chesse.getName()!=name && play == 1))
+            {
+                int x = _chesse.getX();
+                int y = _chesse.getY();
+
+
+
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getName() == name){
                         _chesse.move(_chesse.getX()+1,_chesse.getY()+1);
