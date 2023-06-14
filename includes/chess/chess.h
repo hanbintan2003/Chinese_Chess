@@ -10,7 +10,7 @@ public:
         this->x=i;
         this->y=j;
         this->name=0;
-        circle.setRadius(30);
+        circle.setRadius(r);
         circle.setPosition(grid[i][j]);
         circle.setFillColor(sf::Color::Transparent);
     }
@@ -19,11 +19,11 @@ public:
         this->x=i;
         this->y=j;
         this->name=name;
-        circle.setRadius(30);
+        circle.setRadius(r);
         circle.setPosition(grid[i][j]);
         circle.setTexture(&texture);
 
-        circleColor.setRadius(30);
+        circleColor.setRadius(r);
         circleColor.setPosition(grid[i][j]);
     }
 
