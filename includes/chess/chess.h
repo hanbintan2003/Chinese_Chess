@@ -54,6 +54,10 @@ public:
         circleColor.setPosition(newPos);
     }
 
+    void setPosition(int i, int j) {
+        circle.setPosition(grid[i][j]);
+        circleColor.setPosition(grid[i][j]);
+    }
 
     void setBackColor(sf::Color color){
         circleColor.setFillColor(color);

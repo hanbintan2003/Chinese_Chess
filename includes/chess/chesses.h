@@ -130,6 +130,25 @@ public:
     }
     ~Chesses()= default;
 
+    //need to test
+    void switchSpot(int name, int x, int y){
+        int old_x, old_y;
+        for(int i=0;i<this->_chesses.size();i++){
+            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
+                this->_chesses.erase(this->_chesses.begin() + i);
+                break;
+            }
+        }
+        for(auto & _chesse : this->_chesses){
+            if(_chesse.getName() == name){
+                _chesse.setPosition(x,y);
+                break;
+            }
+        }
+        Chess empty(old_x,old_y);
+        this->_chesses.push_back(empty);
+    }
+
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
         bool work = false;
         for(auto & _chesse : this->_chesses){
@@ -155,60 +174,48 @@ public:
             //select
             if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
             || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1)){
-
                 return _chesse.getName();
             }
 
             //unSelect
-            if(clicked && name != -1 && _chesse.getName() == name){
-                name = -1;
-                if (play == 1)play = 0;
-                else play = 1;
-                return -1;
-            }
+            if(clicked && name != -1 && _chesse.getName() == name) {return -1;}
 
             //for soldier move
-            if((clicked && (_chesse.getName()<1 || _chesse.getName()>16) && _chesse.getName()!=name && play == 0 && name >=1 &&name <6)||
+            if
+            ((clicked && (_chesse.getName()<1 || _chesse.getName()>16) && _chesse.getName()!=name && play == 0 && name >=1 &&name <6)
+            ||
             (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=11 &&name <16)
             {
-                //cout<<"stopby";
                 int x = _chesse.getX();
                 int y = _chesse.getY();
 
-
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getName() == name){
-                        //cout<<"work";
                         if (play == 0){
-                            cout<<_chesse.getY();
-
+                            //cout<<_chesse.getY();
                             if (_chesse.getY() > 4){
-                                //cout<<"work";
                                 if (x==_chesse.getX() && y==_chesse.getY()-1){
-                                    //cout<<"work";
+                                    work = true;
                                     _chesse.move(_chesse.getX(),_chesse.getY()-1);
                                 }
+                            }else{
                             }
+                        }else{
+
                         }
                     }
                 }
-                _chesse.move(_chesse.getX(),_chesse.getY()+1);
-
-
-                if (work){
-                    name = -1;
-                    if (play == 1)play = 0;
-                    else play = 1;
-                    return -1;
-                }else{
-                    cout<<"no work";
-                    return name;
-                }
             }
-
-
         }
-        return INVALID;
+        if (work){
+            name = -1;
+            if (play == 1)play = 0;
+            else play = 1;
+            return -1;
+        }else{
+            //cout<<"no work";
+            return name;
+        }
     }
 
     void draw_chesses(sf::RenderWindow &window){
