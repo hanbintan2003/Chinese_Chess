@@ -9,101 +9,101 @@ class Chesses{
 private:
     vector<Chess> _chesses;
     void _init_chesses(){
-        Chess bc1( 28,60,0,0,config.get_texture("bc"));
+        Chess bc1( 28,0,0,config.get_texture("bc"));
         this->_chesses.push_back(bc1);
 
-        Chess bc2( 29,60,8,0,config.get_texture("bc"));
+        Chess bc2( 29,8,0,config.get_texture("bc"));
         this->_chesses.push_back(bc2);
 
-        Chess bm1(30,60,1,0,config.get_texture("bm"));
+        Chess bm1(30,1,0,config.get_texture("bm"));
         this->_chesses.push_back(bm1);
 
-        Chess bm2(31,60,7,0,config.get_texture("bm"));
+        Chess bm2(31,7,0,config.get_texture("bm"));
         this->_chesses.push_back(bm2);
 
-        Chess bx1(32, 60,2,0,config.get_texture("bx"));
+        Chess bx1(32, 2,0,config.get_texture("bx"));
         this->_chesses.push_back(bx1);
 
-        Chess bx2(33,60,6,0,config.get_texture("bx"));
+        Chess bx2(33,6,0,config.get_texture("bx"));
         this->_chesses.push_back(bx2);
 
-        Chess bs1(34, 60,3,0,config.get_texture("bs"));
+        Chess bs1(34, 3,0,config.get_texture("bs"));
         this->_chesses.push_back(bs1);
 
-        Chess bs2(35, 60,5,0,config.get_texture("bs"));
+        Chess bs2(35, 5,0,config.get_texture("bs"));
         this->_chesses.push_back(bs2);
 
-        Chess bj(36, 60,4,40,config.get_texture("bj"));
+        Chess bj(36, 4,0,config.get_texture("bj"));
         this->_chesses.push_back(bj);
 
-        Chess bp1(26, 60,1,2,config.get_texture("bp"));
+        Chess bp1(26, 1,2,config.get_texture("bp"));
         this->_chesses.push_back(bp1);
 
-        Chess bp2(27, 60,7,2,config.get_texture("bp"));
+        Chess bp2(27, 7,2,config.get_texture("bp"));
         this->_chesses.push_back(bp2);
 
-        Chess bz1(21, 60,0,3,config.get_texture("bz"));
+        Chess bz1(21, 0,3,config.get_texture("bz"));
         this->_chesses.push_back(bz1);
 
-        Chess bz2(22, 60,2,3,config.get_texture("bz"));
+        Chess bz2(22, 2,3,config.get_texture("bz"));
         this->_chesses.push_back(bz2);
 
-        Chess bz3(23, 60,4,3,config.get_texture("bz"));
+        Chess bz3(23, 4,3,config.get_texture("bz"));
         this->_chesses.push_back(bz3);
 
-        Chess bz4(24, 60,6,3,config.get_texture("bz"));
+        Chess bz4(24, 6,3,config.get_texture("bz"));
         this->_chesses.push_back(bz4);
 
-        Chess bz5(25, 60,8,3,config.get_texture("bz"));
+        Chess bz5(25, 8,3,config.get_texture("bz"));
         this->_chesses.push_back(bz5);
 
 
-        Chess rc1(8, 60,0,9,config.get_texture("rc"));
+        Chess rc1(8, 0,9,config.get_texture("rc"));
         this->_chesses.push_back(rc1);
 
-        Chess rc2(9, 60,8,9,config.get_texture("rc"));
+        Chess rc2(9, 8,9,config.get_texture("rc"));
         this->_chesses.push_back(rc2);
 
-        Chess rm1(10, 60,1,9,config.get_texture("rm"));
+        Chess rm1(10, 1,9,config.get_texture("rm"));
         this->_chesses.push_back(rm1);
 
-        Chess rm2(11, 60,7,9,config.get_texture("rm"));
+        Chess rm2(11, 7,9,config.get_texture("rm"));
         this->_chesses.push_back(rm2);
 
-        Chess rx1(12, 60,2,9,config.get_texture("rx"));
+        Chess rx1(12, 2,9,config.get_texture("rx"));
         this->_chesses.push_back(rx1);
 
-        Chess rx2(13, 60,6,9,config.get_texture("rx"));
+        Chess rx2(13, 6,9,config.get_texture("rx"));
         this->_chesses.push_back(rx2);
 
-        Chess rs1(14,60,3,9,config.get_texture("rs"));
+        Chess rs1(14,3,9,config.get_texture("rs"));
         this->_chesses.push_back(rs1);
 
-        Chess rs2(15, 60,5,9,config.get_texture("rs"));
+        Chess rs2(15, 5,9,config.get_texture("rs"));
         this->_chesses.push_back(rs2);
 
-        Chess rj(16,60,4,9,config.get_texture("rj"));
+        Chess rj(16,4,9,config.get_texture("rj"));
         this->_chesses.push_back(rj);
 
-        Chess rp1(6, 60,1,7,config.get_texture("rp"));
+        Chess rp1(6, 1,7,config.get_texture("rp"));
         this->_chesses.push_back(rp1);
 
-        Chess rp2( 7,60,7,7,config.get_texture("rp"));
+        Chess rp2( 7,7,7,config.get_texture("rp"));
         this->_chesses.push_back(rp2);
 
-        Chess rb1(1,60,0,6,config.get_texture("rb"));
+        Chess rb1(1,0,6,config.get_texture("rb"));
         this->_chesses.push_back(rb1);
 
-        Chess rb2(2,60,2,6,config.get_texture("rb"));
+        Chess rb2(2,2,6,config.get_texture("rb"));
         this->_chesses.push_back(rb2);
 
-        Chess rb3( 3,60,4,6,config.get_texture("rb"));
+        Chess rb3( 3,4,6,config.get_texture("rb"));
         this->_chesses.push_back(rb3);
 
-        Chess rb4( 4,60,6,6,config.get_texture("rb"));
+        Chess rb4( 4,6,6,config.get_texture("rb"));
         this->_chesses.push_back(rb4);
 
-        Chess rb5( 5,60,8,6,config.get_texture("rb"));
+        Chess rb5( 5,8,6,config.get_texture("rb"));
         this->_chesses.push_back(rb5);
 
         //forloop for grid
@@ -117,7 +117,7 @@ private:
                     }
                 }
                 if(!flag){
-                    Chess empty(60,i,j);
+                    Chess empty(i,j);
                     this->_chesses.push_back(empty);
                 }
             }

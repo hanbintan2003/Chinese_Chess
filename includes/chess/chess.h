@@ -6,24 +6,24 @@
 class Chess {
 public:
     Chess()= default;
-    Chess(float radius, int i, int j){
+    Chess( int i, int j){
         this->x=i;
         this->y=j;
         this->name=0;
-        circle.setRadius(radius);
+        circle.setRadius(30);
         circle.setPosition(grid[i][j]);
         circle.setFillColor(sf::Color::Transparent);
     }
 
-    Chess(int name, float radius, int i, int j, sf::Texture &texture){
+    Chess(int name,  int i, int j, sf::Texture &texture){
         this->x=i;
         this->y=j;
         this->name=name;
-        circle.setRadius(radius);
+        circle.setRadius(30);
         circle.setPosition(grid[i][j]);
         circle.setTexture(&texture);
 
-        circleColor.setRadius(radius);
+        circleColor.setRadius(30);
         circleColor.setPosition(grid[i][j]);
     }
 

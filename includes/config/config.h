@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <cassert>
 #include <iostream>
-#include "system.h"
+#include "../system/system.h"
 
 
 // TO SET PIC TO TEXTURE IN CONFIG.CPP

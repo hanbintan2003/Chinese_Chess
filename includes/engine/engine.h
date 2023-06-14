@@ -1,6 +1,6 @@
 #ifndef ENGINE_H
 #define ENGINE_H
-#include <SFML/Graphics.hpp>
+#include "SFML/Graphics.hpp"
 #include "../config/config.h"
 #include "../input_box/input_box.h"
 #include "../button/buttons.h"
