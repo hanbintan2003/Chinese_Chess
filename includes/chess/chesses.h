@@ -146,7 +146,7 @@ public:
                 continue;
             }
 
-            _chesse.setBackColor(sf::Color(215, 186, 140));
+            _chesse.setBackColor(sf::Color(235, 200, 150));
         }
 
         for(auto & _chesse : this->_chesses){
