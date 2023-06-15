@@ -99,7 +99,7 @@ void Engine::_update_chesses_event(sf::Event &event) {
     //
     if (temp>=-1 && temp <37) {
         name = temp;
-        call(name);
+        //call(name);
     }
 }
 

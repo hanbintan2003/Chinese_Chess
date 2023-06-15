@@ -186,8 +186,9 @@ public:
             if
             ((clicked && (_chesse.getName()<1 || _chesse.getName()>16) && _chesse.getName()!=name && play == 0 && name >=1 &&name <6)
             ||
-            (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=11 &&name <16)
+            (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=21 &&name <26)
             {
+                cout<<"in";
                 int x = _chesse.getX();
                 int y = _chesse.getY();
 
