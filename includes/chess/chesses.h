@@ -201,9 +201,27 @@ public:
                                     this->switchSpot(name,x,y);
                                 }
                             }else{
+                                if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
+                                ||
+                                (x==_chesse.getX() && y==_chesse.getY()-1)){
+                                    work= true;
+                                    this->switchSpot(name,x,y);
+                                }
                             }
                         }else{
-
+                            if (_chesse.getY() < 5){
+                                if (x==_chesse.getX() && y==_chesse.getY()+1){
+                                    work = true;
+                                    this->switchSpot(name,x,y);
+                                }
+                            }else{
+                                if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
+                                    ||
+                                    (x==_chesse.getX() && y==_chesse.getY()+1)){
+                                    work= true;
+                                    this->switchSpot(name,x,y);
+                                }
+                            }
                         }
                     }
                 }
