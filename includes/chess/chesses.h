@@ -141,6 +141,8 @@ public:
         }
         for(auto & _chesse : this->_chesses){
             if(_chesse.getName() == name){
+                old_x = _chesse.getX();
+                old_y = _chesse.getY();
                 _chesse.setPosition(x,y);
                 break;
             }
@@ -196,7 +198,7 @@ public:
                             if (_chesse.getY() > 4){
                                 if (x==_chesse.getX() && y==_chesse.getY()-1){
                                     work = true;
-                                    _chesse.move(_chesse.getX(),_chesse.getY()-1);
+                                    this->switchSpot(name,x,y);
                                 }
                             }else{
                             }
