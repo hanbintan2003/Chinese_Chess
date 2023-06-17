@@ -188,9 +188,10 @@ public:
             ||
             (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=21 &&name <26)
             {
-                cout<<"in";
+                cout<<"in ";
                 int x = _chesse.getX();
                 int y = _chesse.getY();
+                cout<<x<<","<<y<<endl;
 
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getName() == name){
@@ -198,13 +199,18 @@ public:
                             //cout<<_chesse.getY();
                             if (_chesse.getY() > 4){
                                 if (x==_chesse.getX() && y==_chesse.getY()-1){
+                                    cout<<"in ";
+                                    cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
                                     work = true;
                                     this->switchSpot(name,x,y);
                                 }
                             }else{
-                                if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
+                                cout<<"in ";
+                                if (y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1)
                                 ||
                                 (x==_chesse.getX() && y==_chesse.getY()-1)){
+                                    cout<<"in ";
+                                    cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
                                     work= true;
                                     this->switchSpot(name,x,y);
                                 }
@@ -212,13 +218,20 @@ public:
                         }else{
                             if (_chesse.getY() < 5){
                                 if (x==_chesse.getX() && y==_chesse.getY()+1){
+                                    cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
+
                                     work = true;
                                     this->switchSpot(name,x,y);
                                 }
                             }else{
+                                cout<<"in ";
                                 if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
                                     ||
                                     (x==_chesse.getX() && y==_chesse.getY()+1)){
+                                    cout<<"in ";
+
+                                    cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
+
                                     work= true;
                                     this->switchSpot(name,x,y);
                                 }
@@ -234,7 +247,7 @@ public:
             else play = 1;
             return -1;
         }else{
-            //cout<<"no work";
+
             return name;
         }
     }

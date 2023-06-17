@@ -2,7 +2,6 @@
 #define ENGINE_H
 #include "SFML/Graphics.hpp"
 #include "../config/config.h"
-#include "../input_box/input_box.h"
 #include "../button/buttons.h"
 #include "../chess/chesses.h"
 #include "../header/header.h"
@@ -12,30 +11,25 @@ using namespace std;
 class Engine{
 private:
     int play;
-//start with red
+    //start with red
 
     int name;
-//default no chess is selected
+    //default no chess is selected
 
     // sfml private members here
     sf::RenderWindow _window;
 
     // system setup here
-    InputBox _input_box;
     Buttons _buttons;
     Header _header;
     Chesses _chesses;
-    // private member variables here
 
-    // private helper functions here
     // init
     void _init();
     // update
     void _update_buttons_event(sf::Event& event);
     void _update_chesses_event(sf::Event& event);
-//    void _update_input_box_event(){
-//        cout << "Input box event triggered" << endl;
-//    }
+
 
 public:
     // constructors and destructors
