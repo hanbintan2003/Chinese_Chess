@@ -142,11 +142,14 @@ public:
     ~Chesses()= default;
 
     //need to test
-    void switchSpot(int name, int x, int y){
+    bool switchSpot(int name, int x, int y){
         int old_x, old_y;
+        bool ans = false;
         for(int i=0;i<this->_chesses.size();i++){
             if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
                 this->_chesses.erase(this->_chesses.begin() + i);
+                if (this->_chesses[i].getName() == 16 || this->_chesses[i].getName() ==16){
+                    ans = true;
                 break;
             }
         }
@@ -160,6 +163,8 @@ public:
         }
         Chess empty(old_x,old_y);
         this->_chesses.push_back(empty);
+
+        return ans;
     }
 
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
@@ -222,8 +227,10 @@ public:
                                 ||
                                 (x==_chesse.getX() && y==_chesse.getY()-1)){
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
-                                    work= true;
                                     this->switchSpot(name,x,y);
+
+                                    play=1;
+                                    return -1;
                                 }
                             }
                         }else{
@@ -231,19 +238,20 @@ public:
                                 if (x==_chesse.getX() && y==_chesse.getY()+1){
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
 
-                                    work = true;
                                     this->switchSpot(name,x,y);
+                                    play=0;
+                                    return -1;
                                 }
                             }else{
                                 cout<<"in ";
                                 if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
                                     ||
                                     (x==_chesse.getX() && y==_chesse.getY()+1)){
-
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
 
-                                    work= true;
                                     this->switchSpot(name,x,y);
+                                    play=0;
+                                    return -1;
                                 }
                             }
                         }
