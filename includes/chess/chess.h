@@ -43,19 +43,14 @@ public:
         return circle.getPosition();
     }
 
-    void move(int i, int j){
-        this->x=i;
-        this->y=j;
-        circle.setPosition(grid[i][j]);
-        circleColor.setPosition(grid[i][j]);
-    }
-
     void setPosition(sf::Vector2f newPos) {
         circle.setPosition(newPos);
         circleColor.setPosition(newPos);
     }
 
     void setPosition(int i, int j) {
+        this->x=i;
+        this->y=j;
         circle.setPosition(grid[i][j]);
         circleColor.setPosition(grid[i][j]);
     }

@@ -96,7 +96,7 @@ void call(int temp){
 
 void Engine::_update_chesses_event(sf::Event &event) {
     int temp = this->_chesses.update_chesses(this->_window, event,play,name);
-    //
+
     if (temp>=-1 && temp <37) {
         name = temp;
         //call(name);

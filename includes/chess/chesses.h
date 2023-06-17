@@ -107,8 +107,8 @@ private:
         this->_chesses.push_back(rb5);
 
         //forloop for grid
-        for(int i=0;i<10;i++){
-            for(int j=0;j<9;j++){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<10;j++){
                 bool flag = false;
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getPosition() == grid[i][j]){
@@ -122,6 +122,17 @@ private:
                 }
             }
         }
+        cout<<"red first"<<endl;
+
+//        for (int i = 0; i < 9; ++i) {
+//            for (int j = 0; j < 10; ++j) {
+//                for (auto & _chesse : this->_chesses) {
+//                    if(_chesse.getPosition() == grid[i][j]){
+//                        cout<<callName(_chesse.getName())<<" "<<_chesse.getX()<<" "<<_chesse.getY()<<endl;
+//                    }
+//                }
+//            }
+//        }
     }
 public:
     Chesses(){
@@ -153,6 +164,7 @@ public:
 
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
         bool work = false;
+
         for(auto & _chesse : this->_chesses){
             if((_chesse.isMouseOver(window) && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
             ||(_chesse.isMouseOver(window) && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1))
@@ -188,28 +200,27 @@ public:
             ||
             (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=21 &&name <26)
             {
-                cout<<"in ";
                 int x = _chesse.getX();
                 int y = _chesse.getY();
-                cout<<x<<","<<y<<endl;
+                //cout<<x<<","<<y<<endl;
 
                 for (auto & _chesse : this->_chesses) {
                     if(_chesse.getName() == name){
                         if (play == 0){
-                            //cout<<_chesse.getY();
                             if (_chesse.getY() > 4){
+                                //cout<<x<<_chesse.getX()<<y<<_chesse.getY()<<endl;
                                 if (x==_chesse.getX() && y==_chesse.getY()-1){
-                                    cout<<"in ";
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
-                                    work = true;
+
                                     this->switchSpot(name,x,y);
+                                    play=1;
+                                    return -1;
                                 }
                             }else{
                                 cout<<"in ";
                                 if (y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1)
                                 ||
                                 (x==_chesse.getX() && y==_chesse.getY()-1)){
-                                    cout<<"in ";
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
                                     work= true;
                                     this->switchSpot(name,x,y);
@@ -228,7 +239,6 @@ public:
                                 if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
                                     ||
                                     (x==_chesse.getX() && y==_chesse.getY()+1)){
-                                    cout<<"in ";
 
                                     cout<< callName(name)<<"from "<<_chesse.getX()<<","<<_chesse.getY()<<" to "<<x<<","<<y<<endl;
 
@@ -243,11 +253,16 @@ public:
         }
         if (work){
             name = -1;
-            if (play == 1)play = 0;
-            else play = 1;
+            if (play == 1){
+                play = 0;
+                cout<<"reds turn"<<endl;
+            }
+            else {
+                play = 1;
+                cout<<"blacks turn"<<endl;
+            }
             return -1;
         }else{
-
             return name;
         }
     }
