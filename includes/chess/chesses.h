@@ -165,6 +165,7 @@ public:
         this->_chesses.push_back(empty);
 
         return ans;
+        }
     }
 
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){

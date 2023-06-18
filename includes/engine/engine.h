@@ -4,10 +4,7 @@
 #include "../config/config.h"
 #include "../button/buttons.h"
 #include "../chess/chesses.h"
-#include "../header/header.h"
 
-
-using namespace std;
 class Engine{
 private:
     int play;
@@ -21,7 +18,6 @@ private:
 
     // system setup here
     Buttons _buttons;
-    Header _header;
     Chesses _chesses;
 
     // init
