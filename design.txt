@@ -1,15 +1,16 @@
 project structure:
-    --_tests // unit test using gtest framework(setup included in cmake)
     --assets // used to store image and Font
     --includes // where all of the code reside
       --button // clickable button class, and buttons class for the button used in this project
+      --chess // chess class, and chessboard class
       --config // managing global resource, and system variables
       --engine // processing input/output and updating the screen
-      --header // header class to show to the screen
-      --input_box // input box that allows user to input from Keyboard
-    --main.cpp // the main entry of the program
-    --design.txt // project introduction
+      --system // managing the game system, such as game stage, game state, and game mode
+    --.gitignore // git ignore file
     --CMakeLists.txt // cmake for this project
+    --design.txt // project introduction
+    --main.cpp // the main entry of the program
+    --README.md
 
 
 game stage as 0/1
@@ -31,9 +32,5 @@ game stage as 0/1
 32,33 black elephant
 34,35 black advisor
 36 black general
-
-
-
-
 // TODO
 

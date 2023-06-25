@@ -12,8 +12,7 @@ public:
         this->name=0;
         circle.setRadius(r);
         circle.setPosition(grid[i][j]);
-        //circle.setFillColor(sf::Color::White);
-        circle.setFillColor(sf::Color::Transparent);
+        circle.setFillColor(sf::Color::White);
     }
 
     Chess(int name,  int i, int j, sf::Texture &texture){
