@@ -31,8 +31,6 @@ void Engine::input(){
 
 // main draw method, update screen
 void Engine::display(){
-
-    // display buttons
     this->_chesses.draw_chesses(this->_window);
     if (ending)this->_buttons.draw_buttons(this->_window);
 }
@@ -59,7 +57,6 @@ void Engine::run(){
     }
 
 }
-// *****************************************************************************************************************
 
 // *****************************************************************************************************************
 void Engine::_init(){

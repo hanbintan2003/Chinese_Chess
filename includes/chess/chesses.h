@@ -8,6 +8,165 @@
 class Chesses{
 private:
     vector<Chess> _chesses;
+    
+public:
+    Chesses(){
+        this->_chesses = vector<Chess>();
+        this->_init_chesses();
+    }
+    
+    ~Chesses()= default;
+
+    void draw_chesses(sf::RenderWindow &window){
+        for(auto & _chess : this->_chesses)_chess.drawTo(window);
+    }
+
+    void replay(){
+        this->_chesses = vector<Chess>();
+        this->_init_chesses();
+    }
+
+    bool over(){
+        bool red = false;
+        bool black = false;
+        for (int i = 0; i < this->_chesses.size(); ++i) {
+            if (this->_chesses[i].getName() == 16){
+                red = true;
+            }
+            if (this->_chesses[i].getName() == 36){
+                black = true;
+            }
+        }
+        return !(red && black);
+    }
+
+    //need to test
+    void switchSpot(int name, int x, int y){
+        int old_x, old_y;
+        for(int i=0;i<this->_chesses.size();i++){
+            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y &&
+            (this->_chesses[i].getName() == 16 || this->_chesses[i].getName() == 36)){
+                cout<<"game over"<<endl;
+            }
+            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
+                this->_chesses.erase(this->_chesses.begin() + i);
+            }
+        }
+        for(auto & _chess : this->_chesses){
+            if(_chess.getName() == name){
+                old_x = _chess.getX();
+                old_y = _chess.getY();
+                _chess.setPosition(x,y);
+                break;
+            }
+        }
+
+        Chess empty(old_x,old_y);
+        this->_chesses.push_back(empty);
+    }
+
+
+    int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
+        bool work = false;
+
+        for(auto & _chess : this->_chesses){
+            if((_chess.isMouseOver(window) && _chess.getName() >0 && _chess.getName() < 17 && play == 0 && name == -1)
+            ||(_chess.isMouseOver(window) && _chess.getName() >20 && _chess.getName() < 37 && play == 1 && name == -1))
+            {
+                _chess.setBackColor(sf::Color(225, 196, 150));
+                continue;
+            }
+
+            if (_chess.isMouseOver(window) && name != -1 && _chess.getName() == name)
+            {
+                _chess.setBackColor(sf::Color(225, 196, 150));
+                continue;
+            }
+
+            _chess.setBackColor(sf::Color(235, 200, 150));
+        }
+
+        for(auto & _chess : this->_chesses){
+            bool clicked = _chess.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
+
+            //select
+            if((clicked && _chess.getName() >0 && _chess.getName() < 17 && play == 0 && name == -1)
+            || (clicked && _chess.getName() >20 && _chess.getName() < 37 && play == 1 && name == -1)){
+                return _chess.getName();
+            }
+
+            //unSelect
+            if(clicked && name != -1 && _chess.getName() == name) {return -1;}
+
+            //for soldier move
+            if((clicked && (_chess.getName()<1 || _chess.getName()>16) &&
+            _chess.getName()!=name && play == 0 && name >=1 &&name <6)
+            ||
+            (clicked && _chess.getName()<21) && _chess.getName()!=name
+            && play == 1&& name >=21 &&name <26){
+
+                int x = _chess.getX();
+                int y = _chess.getY();
+
+                for (auto & _chess : this->_chesses) {
+                    if(_chess.getName() == name){
+                        if (play == 0){
+                            if (_chess.getY() > 4){
+                                if (x==_chess.getX() && y==_chess.getY()-1){
+                                    this->switchSpot(name,x,y);
+                                    play=1;
+                                    return -1;
+                                }
+                            }else{
+                                if (y==_chess.getY() && (x==_chess.getX()+1 || x==_chess.getX()-1)
+                                ||
+                                (x==_chess.getX() && y==_chess.getY()-1)){
+                                    this->switchSpot(name,x,y);
+                                    play=1;
+                                    return -1;
+                                }
+                            }
+                        }else{
+                            if (_chess.getY() < 5){
+                                if (x==_chess.getX() && y==_chess.getY()+1){
+                                    this->switchSpot(name,x,y);
+                                    play=0;
+                                    return -1;
+                                }
+                            }else{
+                                cout<<"in ";
+                                if ((y==_chess.getY() && (x==_chess.getX()+1 || x==_chess.getX()-1))
+                                    ||
+                                    (x==_chess.getX() && y==_chess.getY()+1)){
+                                    this->switchSpot(name,x,y);
+                                    play=0;
+                                    return -1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //general move
+            
+            
+        }
+        if (work){
+            name = -1;
+            if (play == 1){
+                play = 0;
+            }
+            else {
+                play = 1;
+            }
+            return -1;
+        }else{
+            return name;
+        }
+    }
+
+
     void _init_chesses(){
         Chess bc1( 28,0,0,config.get_texture("bc"));
         this->_chesses.push_back(bc1);
@@ -106,12 +265,11 @@ private:
         Chess rb5( 5,8,6,config.get_texture("rb"));
         this->_chesses.push_back(rb5);
 
-        //forloop for grid
         for(int i=0;i<9;i++){
             for(int j=0;j<10;j++){
                 bool flag = false;
-                for (auto & _chesse : this->_chesses) {
-                    if(_chesse.getPosition() == grid[i][j]){
+                for (auto & _chess : this->_chesses) {
+                    if(_chess.getPosition() == grid[i][j]){
                         flag = true;
                         break;
                     }
@@ -122,160 +280,6 @@ private:
                 }
             }
         }
-        cout<<"red first"<<endl;
-    }
-public:
-    Chesses(){
-        this->_chesses = vector<Chess>();
-        this->_init_chesses();
-    }
-    
-    ~Chesses()= default;
-
-    void replay(){
-        this->_chesses = vector<Chess>();
-        this->_init_chesses();
-    }
-
-    bool over(){
-        bool red = false;
-        bool black = false;
-        for (int i = 0; i < this->_chesses.size(); ++i) {
-            if (this->_chesses[i].getName() == 16){
-                red = true;
-            }
-            if (this->_chesses[i].getName() == 36){
-                black = true;
-            }
-        }
-        return !(red && black);
-    }
-    //need to test
-    void switchSpot(int name, int x, int y){
-        int old_x, old_y;
-        for(int i=0;i<this->_chesses.size();i++){
-            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y &&
-            (this->_chesses[i].getName() == 16 || this->_chesses[i].getName() == 36)){
-                cout<<"game over"<<endl;
-            }
-            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
-                this->_chesses.erase(this->_chesses.begin() + i);
-            }
-        }
-        for(auto & _chesse : this->_chesses){
-            if(_chesse.getName() == name){
-                old_x = _chesse.getX();
-                old_y = _chesse.getY();
-                _chesse.setPosition(x,y);
-                break;
-            }
-        }
-
-        Chess empty(old_x,old_y);
-        this->_chesses.push_back(empty);
-    }
-
-    int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
-        bool work = false;
-
-        for(auto & _chesse : this->_chesses){
-            if((_chesse.isMouseOver(window) && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
-            ||(_chesse.isMouseOver(window) && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1))
-            {
-                _chesse.setBackColor(sf::Color(225, 196, 150));
-                continue;
-            }
-
-            if (_chesse.isMouseOver(window) && name != -1 && _chesse.getName() == name)
-            {
-                _chesse.setBackColor(sf::Color(225, 196, 150));
-                continue;
-            }
-
-            _chesse.setBackColor(sf::Color(235, 200, 150));
-        }
-
-        for(auto & _chesse : this->_chesses){
-            bool clicked = _chesse.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
-
-            //select
-            if((clicked && _chesse.getName() >0 && _chesse.getName() < 17 && play == 0 && name == -1)
-            || (clicked && _chesse.getName() >20 && _chesse.getName() < 37 && play == 1 && name == -1)){
-                return _chesse.getName();
-            }
-
-            //unSelect
-            if(clicked && name != -1 && _chesse.getName() == name) {return -1;}
-
-            //for soldier move
-            if
-            ((clicked && (_chesse.getName()<1 || _chesse.getName()>16) && _chesse.getName()!=name && play == 0 && name >=1 &&name <6)
-            ||
-            (clicked && _chesse.getName()<21) && _chesse.getName()!=name && play == 1&& name >=21 &&name <26)
-            {
-                int x = _chesse.getX();
-                int y = _chesse.getY();
-
-                for (auto & _chesse : this->_chesses) {
-                    if(_chesse.getName() == name){
-                        if (play == 0){
-                            if (_chesse.getY() > 4){
-                                if (x==_chesse.getX() && y==_chesse.getY()-1){
-                                    this->switchSpot(name,x,y);
-                                    play=1;
-                                    return -1;
-                                }
-                            }else{
-                                if (y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1)
-                                ||
-                                (x==_chesse.getX() && y==_chesse.getY()-1)){
-                                    this->switchSpot(name,x,y);
-
-                                    play=1;
-                                    return -1;
-                                }
-                            }
-                        }else{
-                            if (_chesse.getY() < 5){
-                                if (x==_chesse.getX() && y==_chesse.getY()+1){
-                                    this->switchSpot(name,x,y);
-                                    play=0;
-                                    return -1;
-                                }
-                            }else{
-                                cout<<"in ";
-                                if ((y==_chesse.getY() && (x==_chesse.getX()+1 || x==_chesse.getX()-1))
-                                    ||
-                                    (x==_chesse.getX() && y==_chesse.getY()+1)){
-
-                                    this->switchSpot(name,x,y);
-                                    play=0;
-                                    return -1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (work){
-            name = -1;
-            if (play == 1){
-                play = 0;
-                cout<<"reds turn"<<endl;
-            }
-            else {
-                play = 1;
-                cout<<"blacks turn"<<endl;
-            }
-            return -1;
-        }else{
-            return name;
-        }
-    }
-
-    void draw_chesses(sf::RenderWindow &window){
-        for(auto & _chesse : this->_chesses)_chesse.drawTo(window);
     }
 };
 

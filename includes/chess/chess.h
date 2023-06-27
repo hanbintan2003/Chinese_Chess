@@ -4,8 +4,16 @@
 #include "SFML/Graphics.hpp"
 
 class Chess {
+private:
+    sf::CircleShape circle;
+    sf::CircleShape circleColor;
+    int x;
+    int y;
+    int name;
+
 public:
     Chess()= default;
+    //for empty chess
     Chess( int i, int j){
         this->x=i;
         this->y=j;
@@ -15,6 +23,7 @@ public:
         circle.setFillColor(sf::Color::Transparent);
     }
 
+    //for chess with name
     Chess(int name,  int i, int j, sf::Texture &texture){
         this->x=i;
         this->y=j;
@@ -27,24 +36,15 @@ public:
         circleColor.setPosition(grid[i][j]);
     }
 
-
     int getName(){
         return this->name;
     }
+
     int getX(){
         return this->x;
     }
     int getY(){
         return this->y;
-    }
-
-    sf::Vector2f getPosition() {
-        return circle.getPosition();
-    }
-
-    void setPosition(sf::Vector2f newPos) {
-        circle.setPosition(newPos);
-        circleColor.setPosition(newPos);
     }
 
     void setPosition(int i, int j) {
@@ -61,6 +61,12 @@ public:
     void drawTo(sf::RenderWindow &window){
         window.draw(circleColor);
         window.draw(circle);
+    }
+
+
+
+    sf::Vector2f getPosition() {
+        return circle.getPosition();
     }
 
     // Check if the mouse is within the bounds of the button:
@@ -106,14 +112,6 @@ public:
 
         return false;
     }
-
-
-private:
-    sf::CircleShape circle;
-    sf::CircleShape circleColor;
-    int x;
-    int y;
-    int name;
 };
 
 #endif //CHINESE_CHESS_CHESS_H
