@@ -34,6 +34,7 @@ void Engine::display(){
 
     // display buttons
     this->_chesses.draw_chesses(this->_window);
+    if (ending)this->_buttons.draw_buttons(this->_window);
 }
 
 
@@ -65,6 +66,7 @@ void Engine::_init(){
     this->play = 0;
     this->name = -1;
 
+    this->ending = false;
 }
 // *****************************************************************************************************************
 
@@ -72,9 +74,10 @@ void Engine::_init(){
 void Engine::_update_buttons_event(sf::Event& event){
     int action = this->_buttons.update_buttons(this->_window, event);
 
-    if(action == 0){
+    if(action == 0 &&ending){
         this->_chesses.replay();
-    }else if (action == 1){
+        this->ending = false;
+    }else if (action == 1&&ending){
         this->_window.close();
     }
 }
@@ -90,8 +93,7 @@ void Engine::_update_chesses_event(sf::Event &event) {
         name = temp;
     }
     if (this->_chesses.over()) {
-        this->_buttons = Buttons();
-        this->_buttons.draw_buttons(this->_window);
+        this->ending = true;
     }
 }
 

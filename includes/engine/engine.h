@@ -19,6 +19,7 @@ private:
     // system setup here
     Buttons _buttons;
     Chesses _chesses;
+    bool ending;
 
     // init
     void _init();
