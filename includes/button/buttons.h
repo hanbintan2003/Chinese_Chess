@@ -9,12 +9,17 @@ class Buttons{
 private:
     vector<Button> _buttons;
     void _init_buttons(){
-        // example
-        Button hit_btn("", {130, 50}, 30,
+        Button Replay("  Replay", {110, 50}, 30,
                        sf::Color::White, sf::Color::Red);
-        hit_btn.setFont(config.get_font(ARIAL));
-        hit_btn.setPosition({500, 300});
-        this->_buttons.push_back(hit_btn);
+        Replay.setFont(config.get_font(ARIAL));
+        Replay.setPosition({615, 600});
+        this->_buttons.push_back(Replay);
+
+        Button Close("  Close", {110, 50}, 30,
+                       sf::Color::White, sf::Color::Red);
+        Close.setFont(config.get_font(ARIAL));
+        Close.setPosition({615, 720});
+        this->_buttons.push_back(Close);
 
     }
 public:
@@ -22,7 +27,7 @@ public:
         this->_buttons = vector<Button>();
         this->_init_buttons();
     }
-    ~Buttons(){}
+    ~Buttons()= default;
 
     int update_buttons(sf::RenderWindow &window, sf::Event& event){
         for(int i = 0; i < this->_buttons.size(); ++i){
@@ -36,11 +41,9 @@ public:
         for(int i = 0; i < this->_buttons.size(); ++i)
         {
             bool clicked = this->_buttons[i].isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
-            // if(clicked && i == ACTION CODE DEFINED IN SYSTEM) return ACTION CODE DEFINED IN SYSTEM;
-            // ex:
-            if(clicked && i == Work) return Work;
+            if(clicked && i == 0) return 0;
+            if(clicked && i == 1) return 1;
         }
-        return INVALID;
     }
     void draw_buttons(sf::RenderWindow &window){
         for(auto & _button : this->_buttons){

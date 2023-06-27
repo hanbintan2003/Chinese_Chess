@@ -31,10 +31,8 @@ void Engine::input(){
 
 // main draw method, update screen
 void Engine::display(){
-    // ADD MORE THINGS TO DRAW
 
     // display buttons
-    //this->_buttons.draw_buttons(this->_window);
     this->_chesses.draw_chesses(this->_window);
 }
 
@@ -42,7 +40,6 @@ void Engine::display(){
 // run method for game
 void Engine::run(){
     // set the position and font before running
-    sf::Font arial = config.get_font(ARIAL);
 
     sf::Texture back = config.get_texture("0");
     sf::Sprite sprite(back);
@@ -52,13 +49,9 @@ void Engine::run(){
         // taking input
         this->input();
 
-        // clear the screen
-        //this->_window.clear(sf::Color(145, 186, 214));
-
         // draw the updated events
         this->_window.draw(sprite);
         this->display();
-
 
         // sfml method to display to the screen
         this->_window.display();
@@ -71,21 +64,18 @@ void Engine::run(){
 void Engine::_init(){
     this->play = 0;
     this->name = -1;
-    this->_buttons = Buttons();
 
 }
 // *****************************************************************************************************************
 
 // update buttons event
-void Engine::_update_buttons_event(sf::Event& event)
-{
-    // to get which button the player clicks
+void Engine::_update_buttons_event(sf::Event& event){
     int action = this->_buttons.update_buttons(this->_window, event);
 
-    if(action == Work)
-    {
-        cout << "Work" << endl;
-        return;
+    if(action == 0){
+        this->_chesses.replay();
+    }else if (action == 1){
+        this->_window.close();
     }
 }
 
@@ -96,10 +86,12 @@ void call(int temp){
 
 void Engine::_update_chesses_event(sf::Event &event) {
     int temp = this->_chesses.update_chesses(this->_window, event,play,name);
-
     if (temp>=-1 && temp <37) {
         name = temp;
-        //call(name);
+    }
+    if (this->_chesses.over()) {
+        this->_buttons = Buttons();
+        this->_buttons.draw_buttons(this->_window);
     }
 }
 

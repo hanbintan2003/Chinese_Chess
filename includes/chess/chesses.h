@@ -132,6 +132,24 @@ public:
     
     ~Chesses()= default;
 
+    void replay(){
+        this->_chesses = vector<Chess>();
+        this->_init_chesses();
+    }
+
+    bool over(){
+        bool red = false;
+        bool black = false;
+        for (int i = 0; i < this->_chesses.size(); ++i) {
+            if (this->_chesses[i].getName() == 16){
+                red = true;
+            }
+            if (this->_chesses[i].getName() == 36){
+                black = true;
+            }
+        }
+        return !(red && black);
+    }
     //need to test
     void switchSpot(int name, int x, int y){
         int old_x, old_y;
@@ -140,8 +158,7 @@ public:
             (this->_chesses[i].getName() == 16 || this->_chesses[i].getName() == 36)){
                 cout<<"game over"<<endl;
             }
-            else if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
-
+            if (this->_chesses[i].getX() == x && this->_chesses[i].getY() == y){
                 this->_chesses.erase(this->_chesses.begin() + i);
             }
         }
