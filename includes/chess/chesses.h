@@ -134,7 +134,6 @@ public:
                                     return -1;
                                 }
                             }else{
-                                cout<<"in ";
                                 if ((y==_chess.getY() && (x==_chess.getX()+1 || x==_chess.getX()-1))
                                     ||
                                     (x==_chess.getX() && y==_chess.getY()+1)){
@@ -149,21 +148,49 @@ public:
             }
 
             //general move
-            
-            
-        }
-        if (work){
-            name = -1;
-            if (play == 1){
-                play = 0;
+            if((clicked && (_chess.getName()<1 || _chess.getName()>16) &&
+                _chess.getName()!=name && play == 0 && name ==16)
+               ||
+               (clicked && _chess.getName()<21) && _chess.getName()!=name
+               && play == 1&& name ==36) {
+
+                int x = _chess.getX();
+                int y = _chess.getY();
+
+                for (auto &_chess: this->_chesses) {
+                    if (_chess.getName() == name) {
+                        if (play == 1 && y < 3 && x > 2 && x < 6) {
+                            if (x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) {
+                                this->switchSpot(name, x, y);
+                                play = 0;
+                                return -1;
+                            } else if (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1)) {
+                                this->switchSpot(name, x, y);
+                                play = 0;
+                                return -1;
+                            }
+                        } else if (play == 0 && y > 6 && x > 2 && x < 6) {
+                            if (x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) {
+                                this->switchSpot(name, x, y);
+                                play = 1;
+                                return -1;
+                            } else if (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1)) {
+                                this->switchSpot(name, x, y);
+                                play = 1;
+                                return -1;
+                            }
+                        }
+                    }
+                }
             }
-            else {
-                play = 1;
-            }
-            return -1;
-        }else{
-            return name;
+
+            //
+
+
         }
+
+        return name;
+
     }
 
 
