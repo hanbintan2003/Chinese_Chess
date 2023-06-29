@@ -67,8 +67,8 @@ public:
 
 
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
-        bool work = false;
 
+        //mouse on the chess
         for(auto & _chess : this->_chesses){
             if((_chess.isMouseOver(window) && _chess.getName() >0 && _chess.getName() < 17 && play == 0 && name == -1)
             ||(_chess.isMouseOver(window) && _chess.getName() >20 && _chess.getName() < 37 && play == 1 && name == -1))
@@ -86,6 +86,7 @@ public:
             _chess.setBackColor(sf::Color(235, 200, 150));
         }
 
+        //main moving logic
         for(auto & _chess : this->_chesses){
             bool clicked = _chess.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
 
@@ -111,12 +112,10 @@ public:
                 for (auto & _chess : this->_chesses) {
                     if(_chess.getName() == name){
                         if (play == 0){
-                            if (_chess.getY() > 4){
-                                if (x==_chess.getX() && y==_chess.getY()-1){
-                                    this->switchSpot(name,x,y);
-                                    play=1;
-                                    return -1;
-                                }
+                            if (_chess.getY() > 4 && x==_chess.getX() && y==_chess.getY()-1){
+                                this->switchSpot(name,x,y);
+                                play=1;
+                                return -1;
                             }else{
                                 if (y==_chess.getY() && (x==_chess.getX()+1 || x==_chess.getX()-1)
                                 ||
@@ -127,12 +126,10 @@ public:
                                 }
                             }
                         }else{
-                            if (_chess.getY() < 5){
-                                if (x==_chess.getX() && y==_chess.getY()+1){
-                                    this->switchSpot(name,x,y);
-                                    play=0;
-                                    return -1;
-                                }
+                            if (_chess.getY() < 5 && x==_chess.getX() && y==_chess.getY()+1){
+                                this->switchSpot(name,x,y);
+                                play=0;
+                                return -1;
                             }else{
                                 if ((y==_chess.getY() && (x==_chess.getX()+1 || x==_chess.getX()-1))
                                     ||
@@ -159,24 +156,19 @@ public:
 
                 for (auto &_chess: this->_chesses) {
                     if (_chess.getName() == name) {
-                        if (play == 1 && y < 3 && x > 2 && x < 6) {
-                            if (x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) {
+                        if (play == 0 && y > 6 && x > 2 && x < 6) {
+                            if ((x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) ||
+                            (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1))){
                                 this->switchSpot(name, x, y);
-                                play = 0;
-                                return -1;
-                            } else if (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1)) {
-                                this->switchSpot(name, x, y);
-                                play = 0;
+                                play = 1;
                                 return -1;
                             }
-                        } else if (play == 0 && y > 6 && x > 2 && x < 6) {
-                            if (x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) {
+                        }
+                        else if (play == 1 && y < 3 && x > 2 && x < 6) {
+                            if ((x == _chess.getX() && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) ||
+                            (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1))){
                                 this->switchSpot(name, x, y);
-                                play = 1;
-                                return -1;
-                            } else if (y == _chess.getY() && (x == _chess.getX() - 1 || x == _chess.getX() + 1)) {
-                                this->switchSpot(name, x, y);
-                                play = 1;
+                                play = 0;
                                 return -1;
                             }
                         }
@@ -184,7 +176,75 @@ public:
                 }
             }
 
-            //
+            //advisor move
+            if((clicked && (_chess.getName()<1 || _chess.getName()>16) &&
+                _chess.getName()!=name && play == 0 && (name ==14||name ==15))
+               ||
+               (clicked && _chess.getName()<21) && _chess.getName()!=name
+               && play == 1&& (name ==34||name==35)) {
+
+                int x = _chess.getX();
+                int y = _chess.getY();
+
+                for (auto &_chess: this->_chesses) {
+                    if (_chess.getName() == name) {
+                        if ((x == _chess.getX()+1 && (y == _chess.getY() - 1 || y == _chess.getY() + 1)) ||
+                            (x == _chess.getX()-1 && (y == _chess.getY() - 1 || y == _chess.getY() + 1))) {
+                            if (play == 0 && y > 6 && x > 2 && x < 6) {
+                                this->switchSpot(name, x, y);
+                                play = 1;
+                                return -1;
+                            } else if (play == 1 && y < 3 && x > 2 && x < 6) {
+                                this->switchSpot(name, x, y);
+                                play = 0;
+                                return -1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //elephant move
+            if((clicked && (_chess.getName()<1 || _chess.getName()>16) &&
+                _chess.getName()!=name && play == 0 && (name ==12||name ==13))
+               ||
+               (clicked && _chess.getName()<21) && _chess.getName()!=name
+               && play == 1&& (name ==32||name==33)) {
+
+                int x = _chess.getX();
+                int y = _chess.getY();
+
+                for (auto &_chess: this->_chesses) {
+                    if (_chess.getName() == name) {
+                        if ((x == _chess.getX()+2 && (y == _chess.getY() - 2 || y == _chess.getY() + 2)) ||
+                            (x == _chess.getX()-2 && (y == _chess.getY() - 2 || y == _chess.getY() + 2))) {
+
+                            bool mid = false;
+                            int clickX = (x-_chess.getX())/2;
+                            int clickY = (y-_chess.getY())/2;
+
+                            //check if had something block
+                            for (int i = 0; i < this->_chesses.size(); ++i) {
+                                if (this->_chesses[i].getX()==clickX+_chess.getX()
+                                && this->_chesses[i].getY()==clickY+_chess.getY()){
+                                    if(this->_chesses[i].getName()!=0) mid= true;
+                                }
+                            }
+
+                            if (play == 0 && y > 4 &&!mid) {
+                                this->switchSpot(name, x, y);
+                                play = 1;
+                                return -1;
+                            } else if (play == 1 && y < 5 &&!mid) {
+                                this->switchSpot(name, x, y);
+                                play = 0;
+                                return -1;
+                            }
+                        }
+                    }
+                }
+            }
+
 
 
         }
