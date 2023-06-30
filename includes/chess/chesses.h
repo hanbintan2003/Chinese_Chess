@@ -284,6 +284,43 @@ public:
                 }
             }
 
+            //chariot move
+            if((clicked && (_chess.getName()<1 || _chess.getName()>16) &&
+                _chess.getName()!=name && play == 0 && (name ==8 ||name ==9))
+               ||
+               (clicked && _chess.getName()<21) && _chess.getName()!=name
+               && play == 1&& (name ==28 ||name ==29)) {
+
+                int x = _chess.getX();
+                int y = _chess.getY();
+
+                for (auto &_chess: this->_chesses) {
+                    bool stuck = false;
+
+                    if (_chess.getName() == name) {
+                        if ((x == _chess.getX() && (y>=0 && y<=9)) ||
+                            (y == _chess.getY() && (x>=0 && x<=8))) {
+
+                            int clickX = x-_chess.getX();
+                            int clickY = y-_chess.getY();
+                            cout<<clickX<<clickY<<endl;
+
+
+
+                            if (play == 0 && !stuck) {
+                                this->switchSpot(name, x, y);
+                                play = 1;
+                                return -1;
+                            } else if (play == 1 && !stuck) {
+                                this->switchSpot(name, x, y);
+                                play = 0;
+                                return -1;
+                            }
+                        }
+                    }
+                }
+            }
+
 
 
         }
