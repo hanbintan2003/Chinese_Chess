@@ -303,7 +303,6 @@ public:
 
                             int clickX = x-_chess.getX();
                             int clickY = y-_chess.getY();
-                            cout<<clickX<<clickY<<endl;
 
                             //check if had something block
                             if (clickX == 0){
@@ -365,69 +364,135 @@ public:
                ||
                (clicked && _chess.getName()<21) && _chess.getName()!=name
                && play == 1&& (name ==26 ||name ==27)) {
-
                 int x = _chess.getX();
                 int y = _chess.getY();
 
-                for (auto &_chess: this->_chesses) {
-                    bool stuck = false;
+                //move
+                if(_chess.getName()==0){
+                    for (auto &_chess: this->_chesses) {
+                        bool stuck = false;
 
-                    if (_chess.getName() == name) {
-                        if ((x == _chess.getX() && (y>=0 && y<=9)) ||
-                            (y == _chess.getY() && (x>=0 && x<=8))) {
+                        if (_chess.getName() == name) {
+                            if ((x == _chess.getX() && (y>=0 && y<=9)) ||
+                                (y == _chess.getY() && (x>=0 && x<=8))) {
 
-                            int clickX = x-_chess.getX();
-                            int clickY = y-_chess.getY();
-                            cout<<clickX<<clickY<<endl;
+                                int clickX = x-_chess.getX();
+                                int clickY = y-_chess.getY();
 
-                            //check if had something block
-                            if (clickX == 0){
-                                if (clickY > 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getX()==x
-                                            && this->_chesses[i].getY()>_chess.getY()
-                                            && this->_chesses[i].getY()<y){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                //check if had something block
+                                if (clickX == 0){
+                                    if (clickY > 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getX()==x
+                                                && this->_chesses[i].getY()>_chess.getY()
+                                                && this->_chesses[i].getY()<y){
+                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                            }
+                                        }
+                                    } else if (clickY < 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getX()==x
+                                                && this->_chesses[i].getY()<_chess.getY()
+                                                && this->_chesses[i].getY()>y){
+                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                            }
                                         }
                                     }
-                                } else if (clickY < 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getX()==x
-                                            && this->_chesses[i].getY()<_chess.getY()
-                                            && this->_chesses[i].getY()>y){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                }else if (clickY == 0){
+                                    if (clickX > 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getY()==y
+                                                && this->_chesses[i].getX()>_chess.getX()
+                                                && this->_chesses[i].getX()<x){
+                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                            }
+                                        }
+                                    } else if (clickX < 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getY()==y
+                                                && this->_chesses[i].getX()<_chess.getX()
+                                                && this->_chesses[i].getX()>x){
+                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                            }
                                         }
                                     }
                                 }
-                            }else if (clickY == 0){
-                                if (clickX > 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getY()==y
-                                            && this->_chesses[i].getX()>_chess.getX()
-                                            && this->_chesses[i].getX()<x){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
-                                        }
-                                    }
-                                } else if (clickX < 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getY()==y
-                                            && this->_chesses[i].getX()<_chess.getX()
-                                            && this->_chesses[i].getX()>x){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
-                                        }
-                                    }
+
+
+                                if (play == 0 && !stuck) {
+                                    this->switchSpot(name, x, y);
+                                    play = 1;
+                                    return -1;
+                                } else if (play == 1 && !stuck) {
+                                    this->switchSpot(name, x, y);
+                                    play = 0;
+                                    return -1;
                                 }
                             }
+                        }
+                    }
+                }
+                //eat
+                else if(_chess.getName()>0){
+                    for (auto &_chess: this->_chesses) {
+                        int stuck = 0;
+
+                        if (_chess.getName() == name) {
+                            if ((x == _chess.getX() && (y>=0 && y<=9)) ||
+                                (y == _chess.getY() && (x>=0 && x<=8))) {
+
+                                int clickX = x-_chess.getX();
+                                int clickY = y-_chess.getY();
+
+                                //check if had something block
+                                if (clickX == 0){
+                                    if (clickY > 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getX()==x
+                                                && this->_chesses[i].getY()>_chess.getY()
+                                                && this->_chesses[i].getY()<y){
+                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                            }
+                                        }
+                                    } else if (clickY < 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getX()==x
+                                                && this->_chesses[i].getY()<_chess.getY()
+                                                && this->_chesses[i].getY()>y){
+                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                            }
+                                        }
+                                    }
+                                }else if (clickY == 0){
+                                    if (clickX > 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getY()==y
+                                                && this->_chesses[i].getX()>_chess.getX()
+                                                && this->_chesses[i].getX()<x){
+                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                            }
+                                        }
+                                    } else if (clickX < 0){
+                                        for (int i = 0; i < this->_chesses.size(); ++i) {
+                                            if (this->_chesses[i].getY()==y
+                                                && this->_chesses[i].getX()<_chess.getX()
+                                                && this->_chesses[i].getX()>x){
+                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                            }
+                                        }
+                                    }
+                                }
 
 
-                            if (play == 0 && !stuck) {
-                                this->switchSpot(name, x, y);
-                                play = 1;
-                                return -1;
-                            } else if (play == 1 && !stuck) {
-                                this->switchSpot(name, x, y);
-                                play = 0;
-                                return -1;
+                                if (play == 0 && stuck==1) {
+                                    this->switchSpot(name, x, y);
+                                    play = 1;
+                                    return -1;
+                                } else if (play == 1 && stuck==1) {
+                                    this->switchSpot(name, x, y);
+                                    play = 0;
+                                    return -1;
+                                }
                             }
                         }
                     }
