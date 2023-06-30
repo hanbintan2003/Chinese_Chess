@@ -259,16 +259,16 @@ public:
                             (x == _chess.getX()-2 && (y == _chess.getY() - 1 || y == _chess.getY() + 1))) {
 
                             bool stuck = false;
-//                            int clickX = (x-_chess.getX())/2;
-//                            int clickY = (y-_chess.getY())/2;
-//
-//                            //check if had something block
-//                            for (int i = 0; i < this->_chesses.size(); ++i) {
-//                                if (this->_chesses[i].getX()==clickX+_chess.getX()
-//                                    && this->_chesses[i].getY()==clickY+_chess.getY()){
-//                                    if(this->_chesses[i].getName()!=0) stuck= true;
-//                                }
-//                            }
+                            int clickX = (x-_chess.getX())/2;
+                            int clickY = (y-_chess.getY())/2;
+
+                            //check if had something block
+                            for (int i = 0; i < this->_chesses.size(); ++i) {
+                                if (this->_chesses[i].getX()==clickX+_chess.getX()
+                                    && this->_chesses[i].getY()==clickY+_chess.getY()){
+                                    if(this->_chesses[i].getName()!=0) stuck= true;
+                                }
+                            }
 
                             if (play == 0 &&!stuck) {
                                 this->switchSpot(name, x, y);
