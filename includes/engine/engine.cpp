@@ -35,6 +35,7 @@ void Engine::display(){
     if (ending)this->_buttons.draw_buttons(this->_window);
 }
 
+// *****************************************************************************************************************
 
 // run method for game
 void Engine::run(){
@@ -95,5 +96,3 @@ void Engine::_update_chesses_event(sf::Event &event) {
         }
     }
 }
-
-

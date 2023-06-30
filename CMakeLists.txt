@@ -60,6 +60,10 @@ set(INCLUDES_FOLDER includes)
 FILE(GLOB_RECURSE SOURCE_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}   "${INCLUDES_FOLDER}/*.cpp" )
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
+# Disable deprecated-declarations warning for library-related code
+if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
+    set_source_files_properties(<library_source_file.cpp> PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations")
+endif()
 
 
 ADD_EXECUTABLE(main

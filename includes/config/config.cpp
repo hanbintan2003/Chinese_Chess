@@ -4,7 +4,8 @@
 Config config = Config();
 
 void Config::_set_texture(){
-    // back ground
+    // background
+
     auto back = make_shared<sf::Texture>();
     if (r!=60) back->loadFromFile("../assets/chess/background.jpeg");
     else back->loadFromFile("../assets/chess/backgroundM.jpeg");

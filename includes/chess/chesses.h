@@ -20,6 +20,7 @@ public:
     void draw_chesses(sf::RenderWindow &window){
         for(auto & _chess : this->_chesses)_chess.drawTo(window);
     }
+// *****************************************************************************************************************
 
     void replay(){
         this->_chesses = vector<Chess>();
@@ -29,18 +30,19 @@ public:
     bool over(){
         bool red = false;
         bool black = false;
-        for (int i = 0; i < this->_chesses.size(); ++i) {
-            if (this->_chesses[i].getName() == 16){
+        for (auto & _chesse : this->_chesses) {
+            if (_chesse.getName() == 16){
                 red = true;
             }
-            if (this->_chesses[i].getName() == 36){
+            if (_chesse.getName() == 36){
                 black = true;
             }
         }
         return !(red && black);
     }
 
-    //need to test
+// *****************************************************************************************************************
+
     void switchSpot(int name, int x, int y){
         int old_x, old_y;
         for(int i=0;i<this->_chesses.size();i++){
@@ -64,6 +66,8 @@ public:
         Chess empty(old_x,old_y);
         this->_chesses.push_back(empty);
     }
+
+    // *****************************************************************************************************************
 
 
     int update_chesses(sf::RenderWindow &window, sf::Event& event, int& play, int& name){
@@ -220,10 +224,10 @@ public:
                             int clickY = (y-_chess.getY())/2;
 
                             //check if had something block
-                            for (int i = 0; i < this->_chesses.size(); ++i) {
-                                if (this->_chesses[i].getX()==clickX+_chess.getX()
-                                && this->_chesses[i].getY()==clickY+_chess.getY()){
-                                    if(this->_chesses[i].getName()!=0) stuck= true;
+                            for (auto & _chesse : this->_chesses) {
+                                if (_chesse.getX()==clickX+_chess.getX()
+                                && _chesse.getY()==clickY+_chess.getY()){
+                                    if(_chesse.getName()!=0) stuck= true;
                                 }
                             }
 
@@ -263,10 +267,10 @@ public:
                             int clickY = (y-_chess.getY())/2;
 
                             //check if had something block
-                            for (int i = 0; i < this->_chesses.size(); ++i) {
-                                if (this->_chesses[i].getX()==clickX+_chess.getX()
-                                    && this->_chesses[i].getY()==clickY+_chess.getY()){
-                                    if(this->_chesses[i].getName()!=0) stuck= true;
+                            for (auto & _chesse : this->_chesses) {
+                                if (_chesse.getX()==clickX+_chess.getX()
+                                    && _chesse.getY()==clickY+_chess.getY()){
+                                    if(_chesse.getName()!=0) stuck= true;
                                 }
                             }
 
@@ -307,37 +311,37 @@ public:
                             //check if had something block
                             if (clickX == 0){
                                 if (clickY > 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getX()==x
-                                            && this->_chesses[i].getY()>_chess.getY()
-                                            && this->_chesses[i].getY()<y){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                    for (auto & _chesse : this->_chesses) {
+                                        if (_chesse.getX()==x
+                                            && _chesse.getY()>_chess.getY()
+                                            && _chesse.getY()<y){
+                                            if(_chesse.getName()!=0) stuck= true;
                                         }
                                     }
                                 } else if (clickY < 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getX()==x
-                                            && this->_chesses[i].getY()<_chess.getY()
-                                            && this->_chesses[i].getY()>y){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                    for (auto & _chesse : this->_chesses) {
+                                        if (_chesse.getX()==x
+                                            && _chesse.getY()<_chess.getY()
+                                            && _chesse.getY()>y){
+                                            if(_chesse.getName()!=0) stuck= true;
                                         }
                                     }
                                 }
                             }else if (clickY == 0){
                                 if (clickX > 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getY()==y
-                                            && this->_chesses[i].getX()>_chess.getX()
-                                            && this->_chesses[i].getX()<x){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                    for (auto & _chesse : this->_chesses) {
+                                        if (_chesse.getY()==y
+                                            && _chesse.getX()>_chess.getX()
+                                            && _chesse.getX()<x){
+                                            if(_chesse.getName()!=0) stuck= true;
                                         }
                                     }
                                 } else if (clickX < 0){
-                                    for (int i = 0; i < this->_chesses.size(); ++i) {
-                                        if (this->_chesses[i].getY()==y
-                                            && this->_chesses[i].getX()<_chess.getX()
-                                            && this->_chesses[i].getX()>x){
-                                            if(this->_chesses[i].getName()!=0) stuck= true;
+                                    for (auto & _chesse : this->_chesses) {
+                                        if (_chesse.getY()==y
+                                            && _chesse.getX()<_chess.getX()
+                                            && _chesse.getX()>x){
+                                            if(_chesse.getName()!=0) stuck= true;
                                         }
                                     }
                                 }
@@ -382,37 +386,37 @@ public:
                                 //check if had something block
                                 if (clickX == 0){
                                     if (clickY > 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getX()==x
-                                                && this->_chesses[i].getY()>_chess.getY()
-                                                && this->_chesses[i].getY()<y){
-                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()>_chess.getY()
+                                                && _chesse.getY()<y){
+                                                if(_chesse.getName()!=0) stuck= true;
                                             }
                                         }
                                     } else if (clickY < 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getX()==x
-                                                && this->_chesses[i].getY()<_chess.getY()
-                                                && this->_chesses[i].getY()>y){
-                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()<_chess.getY()
+                                                && _chesse.getY()>y){
+                                                if(_chesse.getName()!=0) stuck= true;
                                             }
                                         }
                                     }
                                 }else if (clickY == 0){
                                     if (clickX > 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getY()==y
-                                                && this->_chesses[i].getX()>_chess.getX()
-                                                && this->_chesses[i].getX()<x){
-                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getY()==y
+                                                && _chesse.getX()>_chess.getX()
+                                                && _chesse.getX()<x){
+                                                if(_chesse.getName()!=0) stuck= true;
                                             }
                                         }
                                     } else if (clickX < 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getY()==y
-                                                && this->_chesses[i].getX()<_chess.getX()
-                                                && this->_chesses[i].getX()>x){
-                                                if(this->_chesses[i].getName()!=0) stuck= true;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getY()==y
+                                                && _chesse.getX()<_chess.getX()
+                                                && _chesse.getX()>x){
+                                                if(_chesse.getName()!=0) stuck= true;
                                             }
                                         }
                                     }
@@ -447,37 +451,37 @@ public:
                                 //check if had something block
                                 if (clickX == 0){
                                     if (clickY > 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getX()==x
-                                                && this->_chesses[i].getY()>_chess.getY()
-                                                && this->_chesses[i].getY()<y){
-                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()>_chess.getY()
+                                                && _chesse.getY()<y){
+                                                if(_chesse.getName()!=0) stuck++;
                                             }
                                         }
                                     } else if (clickY < 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getX()==x
-                                                && this->_chesses[i].getY()<_chess.getY()
-                                                && this->_chesses[i].getY()>y){
-                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()<_chess.getY()
+                                                && _chesse.getY()>y){
+                                                if(_chesse.getName()!=0) stuck++;
                                             }
                                         }
                                     }
                                 }else if (clickY == 0){
                                     if (clickX > 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getY()==y
-                                                && this->_chesses[i].getX()>_chess.getX()
-                                                && this->_chesses[i].getX()<x){
-                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getY()==y
+                                                && _chesse.getX()>_chess.getX()
+                                                && _chesse.getX()<x){
+                                                if(_chesse.getName()!=0) stuck++;
                                             }
                                         }
                                     } else if (clickX < 0){
-                                        for (int i = 0; i < this->_chesses.size(); ++i) {
-                                            if (this->_chesses[i].getY()==y
-                                                && this->_chesses[i].getX()<_chess.getX()
-                                                && this->_chesses[i].getX()>x){
-                                                if(this->_chesses[i].getName()!=0) stuck++;
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getY()==y
+                                                && _chesse.getX()<_chess.getX()
+                                                && _chesse.getX()>x){
+                                                if(_chesse.getName()!=0) stuck++;
                                             }
                                         }
                                     }
@@ -507,6 +511,8 @@ public:
         return name;
 
     }
+
+// *****************************************************************************************************************
 
 
     void _init_chesses(){

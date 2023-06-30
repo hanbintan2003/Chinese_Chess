@@ -5,20 +5,12 @@
 using namespace std;
 
 enum FONTS{
-    // ADD MORE FONTS HERE
     ARIAL = 0,
 };
 
-// Action code for buttons go here
-enum ACTION_CODE{
-    INVALID = -99,
-    // add more action code for button here
-    Work = 666,
-};
 
-
+//for different platforms
 #pragma once
-
 #if defined(_WIN32) || defined(_WIN64)
 const float WINDOW_HEIGHT = 1446 * 0.8f;
 const float WINDOW_WIDTH = 1333.5 * 0.8f;
