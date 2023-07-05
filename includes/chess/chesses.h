@@ -94,7 +94,7 @@ public:
         for(auto & _chess : this->_chesses){
             bool clicked = _chess.isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
 
-            //select
+            //to select
             if((clicked && _chess.getName() >0 && _chess.getName() < 17 && play == 0 && name == -1)
             || (clicked && _chess.getName() >20 && _chess.getName() < 37 && play == 1 && name == -1)){
                 return _chess.getName();
@@ -157,6 +157,53 @@ public:
 
                 int x = _chess.getX();
                 int y = _chess.getY();
+
+                //to fly general
+                if(_chess.getName()== 16 || _chess.getName()== 36){
+                    for (auto &_chess: this->_chesses) {
+                        bool stuck = false;
+
+                        if (_chess.getName() == name) {
+                            if ((x == _chess.getX() && (y>=0 && y<=9)) ||
+                                (y == _chess.getY() && (x>=0 && x<=8))) {
+
+                                int clickX = x-_chess.getX();
+                                int clickY = y-_chess.getY();
+
+                                //check if had something block
+                                if (clickX == 0){
+                                    if (clickY > 0){
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()>_chess.getY()
+                                                && _chesse.getY()<y){
+                                                if(_chesse.getName()!=0) stuck= true;
+                                            }
+                                        }
+                                    } else if (clickY < 0){
+                                        for (auto & _chesse : this->_chesses) {
+                                            if (_chesse.getX()==x
+                                                && _chesse.getY()<_chess.getY()
+                                                && _chesse.getY()>y){
+                                                if(_chesse.getName()!=0) stuck= true;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (play == 0 && !stuck) {
+                                    this->switchSpot(name, x, y);
+                                    play = 1;
+                                    return -1;
+                                } else if (play == 1 && !stuck) {
+                                    this->switchSpot(name, x, y);
+                                    play = 0;
+                                    return -1;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 for (auto &_chess: this->_chesses) {
                     if (_chess.getName() == name) {

@@ -1,5 +1,6 @@
 project structure:
     --assets // used to store image and Font
+      --chess //used for store the chess image
     --includes // where all of the code reside
       --button // clickable button class, and buttons class for the button used in this project
       --chess // chess class, and chessboard class
@@ -12,10 +13,10 @@ project structure:
     --main.cpp // the main entry of the program
     --README.md
 
-
 game stage as 0/1
 0 red first 1 black second
 
+number for the chess in algorithm
 0 - empty
 1-5 red soldier
 6,7 red cannon
@@ -32,5 +33,4 @@ game stage as 0/1
 32,33 black elephant
 34,35 black advisor
 36 black general
-// TODO
 
