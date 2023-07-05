@@ -13,6 +13,9 @@ private:
     int name;
     //default no chess is selected
 
+    int end;
+    //default no button is selected
+
     // sfml private members here
     sf::RenderWindow _window;
 

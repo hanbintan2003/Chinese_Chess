@@ -12,13 +12,21 @@ private:
         Button Replay("  Replay", {110, 50}, 30,
                        sf::Color::White, sf::Color::Red);
         Replay.setFont(config.get_font(ARIAL));
-        Replay.setPosition({615, 600});
+
+        //different size for different environment
+        if(r == 60)Replay.setPosition({615, 600});
+        else Replay.setPosition({482, 500});
+
         this->_buttons.push_back(Replay);
 
         Button Close("  Close", {110, 50}, 30,
                        sf::Color::White, sf::Color::Red);
         Close.setFont(config.get_font(ARIAL));
-        Close.setPosition({615, 720});
+
+        //different size for different environment
+        if(r == 60)Close.setPosition({615, 720});
+        else Close.setPosition({482, 620});
+
         this->_buttons.push_back(Close);
 
     }
@@ -41,8 +49,8 @@ public:
         for(int i = 0; i < this->_buttons.size(); ++i)
         {
             bool clicked = this->_buttons[i].isMouseOver(window) && event.type == sf::Event::MouseButtonPressed;
-            if(clicked && i == 0) return 0;
-            if(clicked && i == 1) return 1;
+            if(clicked && i == 0) return 9;
+            if(clicked && i == 1) return 6;
         }
     }
     void draw_buttons(sf::RenderWindow &window){

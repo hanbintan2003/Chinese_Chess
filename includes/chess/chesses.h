@@ -418,7 +418,7 @@ public:
                 int x = _chess.getX();
                 int y = _chess.getY();
 
-                //move
+                //moving
                 if(_chess.getName()==0){
                     for (auto &_chess: this->_chesses) {
                         bool stuck = false;
@@ -534,7 +534,6 @@ public:
                                     }
                                 }
 
-
                                 if (play == 0 && stuck==1) {
                                     this->switchSpot(name, x, y);
                                     play = 1;
@@ -549,19 +548,14 @@ public:
                     }
                 }
             }
-
-
-
-
         }
-
         return name;
 
     }
 
+
+
 // *****************************************************************************************************************
-
-
     void _init_chesses(){
         Chess bc1( 28,0,0,config.get_texture("bc"));
         this->_chesses.push_back(bc1);

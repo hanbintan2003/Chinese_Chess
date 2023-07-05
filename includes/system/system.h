@@ -26,7 +26,6 @@ const sf::Vector2f grid[9][10] = {
         { sf::Vector2f(1070 * 0.8f, 0 * 0.8f), sf::Vector2f(1070 * 0.8f, 140 * 0.8f), sf::Vector2f(1070 * 0.8f, 290 * 0.8f), sf::Vector2f(1070 * 0.8f, 440 * 0.8f), sf::Vector2f(1070 * 0.8f, 590 * 0.8f), sf::Vector2f(1070 * 0.8f, 740 * 0.8f), sf::Vector2f(1070 * 0.8f, 890 * 0.8f), sf::Vector2f(1070 * 0.8f, 1040 * 0.8f), sf::Vector2f(1070 * 0.8f, 1190 * 0.8f), sf::Vector2f(1070 * 0.8f, 1328 * 0.8f) },
         { sf::Vector2f(1212 * 0.8f, 0 * 0.8f), sf::Vector2f(1212 * 0.8f, 140 * 0.8f), sf::Vector2f(1212 * 0.8f, 290 * 0.8f), sf::Vector2f(1212 * 0.8f, 440 * 0.8f), sf::Vector2f(1212 * 0.8f, 590 * 0.8f), sf::Vector2f(1212 * 0.8f, 740 * 0.8f), sf::Vector2f(1212 * 0.8f, 890 * 0.8f), sf::Vector2f(1212 * 0.8f, 1040 * 0.8f), sf::Vector2f(1212 * 0.8f, 1190 * 0.8f), sf::Vector2f(1212 * 0.8f, 1328 * 0.8f) }
 };
-
 const int r = 60 * 0.8f;
 
 #else
@@ -44,12 +43,9 @@ const sf::Vector2f grid[9][10] = {
         { sf::Vector2f(1070, 0), sf::Vector2f(1070, 140), sf::Vector2f(1070, 290), sf::Vector2f(1070, 440), sf::Vector2f(1070, 590), sf::Vector2f(1070, 740), sf::Vector2f(1070, 890), sf::Vector2f(1070, 1040), sf::Vector2f(1070, 1190), sf::Vector2f(1070, 1328) },
         { sf::Vector2f(1212, 0), sf::Vector2f(1212, 140), sf::Vector2f(1212, 290), sf::Vector2f(1212, 440), sf::Vector2f(1212, 590), sf::Vector2f(1212, 740), sf::Vector2f(1212, 890), sf::Vector2f(1212, 1040), sf::Vector2f(1212, 1190), sf::Vector2f(1212, 1328) }
 };
-
+auto remakeButtonPos = sf::Vector2f{615, 600};
 const int r = 60;
 
 #endif
-
-
-string callName(int name);
 
 #endif

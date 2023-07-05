@@ -32,7 +32,7 @@ void Engine::input(){
 // main draw method, update screen
 void Engine::display(){
     this->_chesses.draw_chesses(this->_window);
-    if (ending)this->_buttons.draw_buttons(this->_window);
+    if(ending)this->_buttons.draw_buttons(this->_window);
 }
 
 // *****************************************************************************************************************
@@ -63,27 +63,24 @@ void Engine::run(){
 void Engine::_init(){
     this->play = 0;
     this->name = -1;
-
     this->ending = false;
 }
 // *****************************************************************************************************************
 
 // update buttons event
 void Engine::_update_buttons_event(sf::Event& event){
-    int action = this->_buttons.update_buttons(this->_window, event);
+    end = this->_buttons.update_buttons(this->_window, event);
 
-    if(action == 0 &&ending){
+    if(end == 9 &&ending){
+        cout<<end;
         this->_chesses.replay();
         this->ending = false;
-    }else if (action == 1&&ending){
+    }
+    else if (end == 6 &&ending){
         this->_window.close();
     }
 }
 
-void call(int temp){
-    if (temp >0 && temp < 37) cout<< "Selected ";
-    callName(temp);
-}
 
 void Engine::_update_chesses_event(sf::Event &event) {
     if (!ending){
@@ -92,6 +89,8 @@ void Engine::_update_chesses_event(sf::Event &event) {
             name = temp;
         }
         if (this->_chesses.over()) {
+            this->play = 0;
+            this->name = -1;
             this->ending = true;
         }
     }
