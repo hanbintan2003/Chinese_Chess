@@ -1,7 +1,6 @@
 #ifndef CHESSES_H
 #define CHESSES_H
 
-#include "../config/config.h"
 #include "chess.h"
 #include "SFML/Graphics.hpp"
 

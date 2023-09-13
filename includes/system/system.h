@@ -43,7 +43,6 @@ const sf::Vector2f grid[9][10] = {
         { sf::Vector2f(1070, 0), sf::Vector2f(1070, 140), sf::Vector2f(1070, 290), sf::Vector2f(1070, 440), sf::Vector2f(1070, 590), sf::Vector2f(1070, 740), sf::Vector2f(1070, 890), sf::Vector2f(1070, 1040), sf::Vector2f(1070, 1190), sf::Vector2f(1070, 1328) },
         { sf::Vector2f(1212, 0), sf::Vector2f(1212, 140), sf::Vector2f(1212, 290), sf::Vector2f(1212, 440), sf::Vector2f(1212, 590), sf::Vector2f(1212, 740), sf::Vector2f(1212, 890), sf::Vector2f(1212, 1040), sf::Vector2f(1212, 1190), sf::Vector2f(1212, 1328) }
 };
-auto remakeButtonPos = sf::Vector2f{615, 600};
 const int r = 60;
 
 #endif

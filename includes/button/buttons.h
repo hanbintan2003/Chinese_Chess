@@ -1,7 +1,6 @@
 #ifndef BUTTONS_H
 #define BUTTONS_H
 
-#include "../config/config.h"
 #include "button.h"
 #include <SFML/Graphics.hpp>
 
