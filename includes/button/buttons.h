@@ -51,6 +51,7 @@ public:
             if(clicked && i == 0) return 9;
             if(clicked && i == 1) return 6;
         }
+        return 1;
     }
     void draw_buttons(sf::RenderWindow &window){
         for(auto & _button : this->_buttons){
